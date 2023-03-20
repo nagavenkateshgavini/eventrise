@@ -1,0 +1,17 @@
+.text-summury {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer .brand {
+  text-align: left;
+}
+
+footer .products {
+  text-align: left;
+}
+
+footer .categories {
+  text-align: left;
+}
