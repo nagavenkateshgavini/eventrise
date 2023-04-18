@@ -1,26 +1,13 @@
-import Header from "./common/header/header";
 import "./App.css";
-import Footer from "./common/Footer/footer";
-import Home from "./common/Home/Home";
-import UserProfile from "./components/userProfile/userProfile";
-import { Row, Col } from "react-bootstrap";
-import Login from "./components/Login/login";
+import { Route, Routes } from "react-router-dom";
+import Home from "./components/Home";
+import CreateEvent from "./components/createEvents/eventForm";
 function App() {
   return (
-    <div className="container-box">
-      <Row>
-        <Header />
-      </Row>
-      <Row>
-        <Login />
-        <Home />
-        <UserProfile />
-      </Row>
-      <Row>
-        <Footer></Footer>
-      </Row>
-      <div></div>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/create" element={<CreateEvent />} />
+    </Routes>
   );
 }
 
