@@ -1,0 +1,9 @@
+.cursor-pointer:hover {
+  cursor: pointer;
+  background-color: #67adcf;
+  color: white;
+  box-shadow: 0 4px 6px rgba(103, 65, 136, 0.4),
+    0 1px 3px rgba(103, 65, 136, 0.2);
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out,
+    color 0.3s ease-in-out;
+}
