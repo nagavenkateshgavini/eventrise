@@ -5,7 +5,7 @@ import Footer from "../../common/Footer/footer";
 import { Row, Col, Button } from 'react-bootstrap';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormContainer from './FormContainer';
-
+import Axios from 'axios';
 
 export default function EventForm() {
 
@@ -27,30 +27,44 @@ export default function EventForm() {
     }
 
     const validateForm = () => {
-        const {title, date, description, price, location, categorie } = form
+        console.log("validation called")
+        const { title, event_date, description, ticket_price, location, event_category } = form
         const newErrors = {}
 
-        if(!date || date === '') newErrors.date = "Please enter date"
+        if(!event_date || event_date === '') newErrors.event_date = "Please enter date"
         else if(description.length < 10) newErrors.description = "Description should be more than 10 characters"
 
         if(!title || title === '') newErrors.title = "Please enter title"
-        if(!price || price === '') newErrors.price = "Please enter price"
+        if(!ticket_price || ticket_price === '') newErrors.ticket_price = "Please enter price"
         if(!location || location === '') newErrors.location = "Please enter location"
-        if(!categorie || categorie === '') newErrors.categorie = "Please enter categorie"
+        if(!event_category || event_category === '') newErrors.event_category = "Please enter category"
 
         return newErrors
     }
 
+    const send = (form) => {
+        const url = `${process.env.REACT_APP_API_SERVER}/createEvent`
+        console.log(url, form)
+        try{
+            Axios.post(url, form)
+        }
+        catch(e){
+            console.log(e)
+        }
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
+        console.log("form submission called")
 
         const formErrors = validateForm()
         if(Object.keys(formErrors).length > 0){
-            setErrors(formErrors)
+            console.log("Errors in the form")
+            console.log(formErrors)
         }
         else{
             console.log("Form Submitted")
-            console.log(form)
+            send(form)
         }
     }
 
@@ -99,48 +113,48 @@ export default function EventForm() {
                             </Form.Control.Feedback>  
                         </Form.Group>
 
-                        <Form.Group as={Col} md="4" className="mb-3" controlId="eventForm.eventDate">
+                        <Form.Group as={Col} md="4" className="mb-3" controlId="eventForm.event_date">
                             <Form.Label className='fw-bold fs-5'>Event Date</Form.Label>
                             <Form.Control type="date" placeholder='Enter Event Date'
-                            value={form.date}
-                            onChange={(e) => setField('date', e.target.value)}
-                            isInvalid={!!errors.date}/>
+                            value={form.event_date}
+                            onChange={(e) => setField('event_date', e.target.value)}
+                            isInvalid={!!errors.event_date}/>
                         
                             <Form.Control.Feedback type='invalid'>
-                                {errors.date}
+                                {errors.event_date}
                             </Form.Control.Feedback>
                         </Form.Group>
 
                         <br />
 
-                        <InputGroup as={Col} md="3" className="mb-3" controlId="eventForm.eventPrice">
+                        <InputGroup as={Col} md="3" className="mb-3" controlId="eventForm.ticket_price">
                             <InputGroup.Text>Price in $</InputGroup.Text>
                             <Form.Control aria-label="Amount (to the nearest dollar)"
-                            value={form.price}
-                            onChange={(e) => setField('price', e.target.value)}
-                            isInvalid={!!errors.price}/>
+                            value={form.ticket_price}
+                            onChange={(e) => setField('ticket_price', e.target.value)}
+                            isInvalid={!!errors.ticket_price}/>
                             <InputGroup.Text>.00</InputGroup.Text>
 
                             <Form.Control.Feedback type='invalid'>
-                                {errors.price}
+                                {errors.ticket_price}
                             </Form.Control.Feedback>
                         </InputGroup>
                         
-                        <Form.Group controlId="eventForm.categorie">
-                            <Form.Label className='fw-bold fs-5'>Event Categorie</Form.Label>
+                        <Form.Group controlId="eventForm.event_category">
+                            <Form.Label className='fw-bold fs-5'>Event category</Form.Label>
 
-                            <Form.Select placeholder='Select Event Categorie'
-                            value={form.categorie}
-                            onChange={(e) => setField('categorie', e.target.value)}
-                            isInvalid={!!errors.categorie}>
+                            <Form.Select placeholder='Select Event category'
+                            value={form.event_category}
+                            onChange={(e) => setField('event_category', e.target.value)}
+                            isInvalid={!!errors.event_category}>
 
-                                <option>Select Categorie</option>
+                                <option>Select category</option>
                                 <option value="music_concert">Music Concert type</option>
                                 <option value="dance">Dancing event</option>
                             </Form.Select>
 
                             <Form.Control.Feedback type='invalid'>
-                                {errors.categorie}
+                                {errors.category}
                             </Form.Control.Feedback>
                         </Form.Group>
 

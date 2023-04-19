@@ -1,6 +1,5 @@
 import React from 'react'
 import Carousel from "../common/carousel/carousel";
-import UserProfile from "./userProfile/userProfile";
 import CreateEventSec from "./createEvents/createEventPage";
 import Footer from "../common/Footer/footer";
 import Header from "../common/header/header";
