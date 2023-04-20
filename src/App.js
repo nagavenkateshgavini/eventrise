@@ -15,6 +15,10 @@ import Categories from "./components/Categories/categories";
 import ProtectedRoute from "./common/ProtectedRoute/ProtectedRoute";
 import NotFound from "./common/pageNotFound/pageNotFound";
 import EventDetails from "./components/EventDetail/EventPage";
+import Registration from "./components/EventRegister/Registration";
+import Payment from "./components/CardPayment/Payment";
+import PaymentEntry from "./components/PaymentEntry/PaymentEntry";
+import Completion from "./components/PaymentSuccessful/Completion";
 
 function App() {
   const [user, setUser] = useState({
@@ -57,6 +61,38 @@ function App() {
             element={
               <ProtectedRoute>
                 <Admin />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/eventRegister"
+            element={
+              <ProtectedRoute>
+                <Registration />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/payment/:totalAmount"
+            element={
+              <ProtectedRoute>
+                <PaymentEntry />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/payment/cards/:amount"
+            element={
+              <ProtectedRoute>
+                <Payment />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/completion"
+            element={
+              <ProtectedRoute>
+                <Completion />
               </ProtectedRoute>
             }
           />
