@@ -14,6 +14,7 @@ import { useMediaQuery } from "react-responsive";
 import PhoneInput from "react-phone-input-2";
 import img1 from "../../assets/celebration.jpeg";
 import { useNavigate } from "react-router-dom";
+import { usStates } from "../../utils/states";
 
 import axios from "axios";
 
@@ -69,6 +70,9 @@ const UserRegistration = () => {
 
     if (formData.age < 18 && formData.age >= 100) {
       newErrors.age = "Your Age doesn't meet requirements";
+    }
+    if (isNaN(formData.age)) {
+      newErrors.age = "Enter valid Age It should not have string";
     }
 
     const passRe =
@@ -368,13 +372,16 @@ const UserRegistration = () => {
                         </Label>
                       </Grid.Column>
                       <Grid.Column width={13}>
-                        <Form.Input
+                        <Form.Dropdown
+                          style={{ width: isMobile ? "100%" : "50%" }}
                           placeholder="State"
                           name="state"
                           value={formData.state}
                           onChange={handleChange}
-                          style={{ width: isMobile ? "100%" : "50%" }}
                           error={errors.state && { content: errors.state }}
+                          fluid
+                          selection
+                          options={usStates}
                         />
                       </Grid.Column>
                     </Grid>
@@ -423,7 +430,7 @@ const UserRegistration = () => {
                         <Form.Input
                           placeholder="Country"
                           name="country"
-                          value={formData.country}
+                          value={"United States"}
                           onChange={handleChange}
                           style={{ width: isMobile ? "100%" : "50%" }}
                           error={errors.country && { content: errors.country }}

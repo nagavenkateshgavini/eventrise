@@ -1,5 +1,5 @@
 import React from "react";
-import { Segment, Grid, Label } from "semantic-ui-react";
+import { Segment, Grid } from "semantic-ui-react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -72,20 +72,20 @@ export const Linedata = {
 };
 
 function HostedEvents() {
-  const chartOptions = {
-    maintainAspectRatio: false,
-    plugins: {
-      title: {
-        display: true,
-        text: "Your Chart Title",
-        font: {
-          size: 20,
-          weight: "bold",
-          color: "black",
-        },
-      },
-    },
-  };
+  // const chartOptions = {
+  //   maintainAspectRatio: false,
+  //   plugins: {
+  //     title: {
+  //       display: true,
+  //       text: "Your Chart Title",
+  //       font: {
+  //         size: 20,
+  //         weight: "bold",
+  //         color: "black",
+  //       },
+  //     },
+  //   },
+  // };
   return (
     <div>
       <Segment>

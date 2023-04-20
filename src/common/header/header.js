@@ -46,7 +46,10 @@ const Header = () => {
         >
           Event<span className="siteName">Rise</span>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Toggle
+          aria-controls="responsive-navbar-nav"
+          className={`${scrollPosition > 50 ? "bg-dark" : ""}`}
+        />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="justify-content-end flex-grow-1 pe-3">
             <Link className="link" to="/browse">
@@ -58,8 +61,8 @@ const Header = () => {
               color="warning"
               className="nav-dropdown mt-1"
             >
-              <NavDropdown.Item as={HashLink} smooth to="#action/3.1">
-                Action
+              <NavDropdown.Item as={HashLink} smooth to="/create">
+                Create
               </NavDropdown.Item>
               <NavDropdown.Item as={HashLink} smooth to="#action/3.2">
                 Another action

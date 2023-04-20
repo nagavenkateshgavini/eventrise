@@ -1,9 +1,9 @@
 import React from "react";
-import { Segment, Card, Image } from "semantic-ui-react";
+import { Card, Image } from "semantic-ui-react";
 import img1 from "../../assets/tickets.jpeg";
 
-
 function EventCards(props) {
+  console.log("props", props);
   if (props)
     return (
       <div className="mb-2">

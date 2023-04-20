@@ -8,12 +8,13 @@ import {
   Button,
   Icon,
   Grid,
-  Message,
+  Label,
 } from "semantic-ui-react";
 
 import axios from "axios";
 import "./login.css";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Login() {
   const { setUser } = useContext(UserContext);
@@ -32,6 +33,9 @@ function Login() {
     setError("");
   };
 
+  const changeError = () => {
+    setError("");
+  };
   const getUserDetails = () => {
     if (userName.trim === "" || password.trim() === "") {
       setError("Please Enter valid username or password");
@@ -54,6 +58,7 @@ function Login() {
       })
       .catch((error) => {
         console.error(error);
+        setError("Entered username or password is not valid");
       });
   };
 
@@ -108,6 +113,7 @@ function Login() {
                   placeholder="joe@schmoe.com"
                   onChange={changeUsername}
                   value={userName}
+                  onFocus={changeError}
                 />
               </Form.Field>
               <Form.Field>
@@ -116,14 +122,17 @@ function Login() {
                   type="password"
                   onChange={changePassword}
                   value={password}
+                  onFocus={changeError}
                 />
               </Form.Field>
               <Grid>
                 <Grid.Row columns={2} centered>
                   <Grid.Column>
-                    <Button color="linkedin">
-                      SignUp <Icon className="ms-2" name="signup" />
-                    </Button>
+                    <Link to="/userRegistration">
+                      <Button color="linkedin">
+                        SignUp <Icon className="ms-2" name="signup" />
+                      </Button>
+                    </Link>
                   </Grid.Column>
                   <Grid.Column>
                     <Button color="linkedin" onClick={getUserDetails}>
@@ -139,7 +148,11 @@ function Login() {
                 <Button circular color="google plus" icon="google plus" />
               </div>
             </Form>
-            {error && <Message floating error header="Error" list={[error]} />}
+            {error.length > 0 && (
+              <Label basic pointing prompt color="red">
+                {error}
+              </Label>
+            )}
           </Col>
         </Row>
       </Segment>
