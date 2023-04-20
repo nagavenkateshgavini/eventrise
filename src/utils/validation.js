@@ -2,7 +2,7 @@ export const validations = (formData) => {
   console.log("mail", formData);
   const newErrors = {};
   for (const fieldName in formData) {
-    if (typeof(fieldName)===String && !isNotEmpty(formData[fieldName])) {
+    if (!isNotEmpty(formData[fieldName])) {
       newErrors[fieldName] = "This field is required";
     }
   }
@@ -26,8 +26,8 @@ export const validations = (formData) => {
 };
 
 const isNotEmpty = (value) => {
-  console.log("value", value);
-  if (value.trim() !== "") {
+  let val = String(value);
+  if (val.trim() !== "") {
     return true;
   }
 };

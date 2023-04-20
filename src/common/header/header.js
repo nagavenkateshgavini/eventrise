@@ -13,6 +13,7 @@ import {
 import { Link } from "react-router-dom";
 import img1 from "../../assets/tickets.jpeg";
 import "./header.css";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -27,7 +28,9 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  const { username, email, userId } = useContext(UserContext);
+  const { username, setUser } = useContext(UserContext);
+  const isAuthenticated = sessionStorage.getItem("auth");
+  const navigate = useNavigate();
   return (
     <Navbar
       collapseOnSelect
@@ -46,11 +49,8 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="justify-content-end flex-grow-1 pe-3">
-            <Link className="link" to="/features">
+            <Link className="link" to="/browse">
               Features
-            </Link>
-            <Link className="link" to="/pricing">
-              Pricing
             </Link>
             <NavDropdown
               title={<span className="menu-title">Categories</span>}
@@ -84,6 +84,23 @@ const Header = () => {
               <Button variant="outline-success">Search</Button>
             </Form>
           </Nav>
+          {isAuthenticated && (
+            <Link
+              className="link"
+              onClick={() => {
+                sessionStorage.clear();
+                setUser({
+                  username: "",
+                  email: "",
+                  userId: "",
+                  isAuthenticated: false,
+                });
+                navigate("/browse");
+              }}
+            >
+              Logout
+            </Link>
+          )}
           <Nav className="ms-2">
             <Link to="/userProfile">
               <Image
@@ -94,7 +111,7 @@ const Header = () => {
                 style={{
                   fontSize: "16px",
                   fontWeight: "500",
-                  color: "white", // Choose a suitable color
+                  color: `${scrollPosition > 50 ? "black" : "white"}`, // Choose a suitable color
                   lineHeight: "50px",
                   verticalAlign: "middle",
                   marginLeft: "5px",

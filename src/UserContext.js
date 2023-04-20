@@ -4,6 +4,7 @@ const UserContext = createContext({
   username: "",
   email: "",
   userId: "",
+  isAuthenticated: false,
   setUser: () => {},
 });
 
