@@ -6,9 +6,11 @@ import { Row, Col, Button } from 'react-bootstrap';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormContainer from './FormContainer';
 import Axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 export default function EventForm() {
 
+    const navigate = useNavigate()
     const [form, setForm] = useState({})
     const [errors, setErrors] = useState({})
 
@@ -61,11 +63,13 @@ export default function EventForm() {
         if(Object.keys(formErrors).length > 0){
             console.log("Errors in the form")
             console.log(formErrors)
+            setErrors(formErrors)
         }
         else{
             console.log("Form Submitted")
             send(form)
         }
+        navigate('/eventconfirmation')
     }
 
   return (
