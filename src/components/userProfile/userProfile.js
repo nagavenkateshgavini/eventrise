@@ -5,7 +5,7 @@ import ProfileCard from "../../common/ProfileCard/ProfileCard";
 import ProfileForm from "../../common/ProfileForm/profileForm";
 import axios from "axios";
 import "./userProfile.css";
-import EventCards from "../EventCards/EventCards";
+import EventCards from "../ProfileEventCards/ProfileEventCards";
 import HostedEvents from "../HostedEvents/hostedEvents";
 import Footer from "../../common/Footer/footer";
 

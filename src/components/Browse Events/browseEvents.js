@@ -4,24 +4,27 @@ import "./browseEvents.css";
 import FAQSection from "../../common/accordian";
 import Footer from "../../common/Footer/footer";
 import { Link } from "react-router-dom";
+import CustomCard from "../../common/CustomCard/CustomCard";
 
-const CategoryCard = ({ category }) => (
-  <Link
-    to={category.link}
-    style={{
-      textDecoration: "none",
-      color: "black",
-    }}
-  >
-    <Card className="shadow-sm cursor-pointer">
-      <Card.Img variant="top" src={category.image} />
-      <Card.Body>
-        <Card.Title>{category.title}</Card.Title>
-        <Card.Text>{category.description}</Card.Text>
-      </Card.Body>
-    </Card>
-  </Link>
-);
+// const CategoryCard = ({ category }) => (
+//   <Link
+//     to={category.link}
+//     style={{
+//       textDecoration: "none",
+//       color: "black",
+//     }}
+//   >
+//     <div className="card-container">
+//       <Card className="shadow-sm cursor-pointer">
+//         <Card.Img variant="top" src={category.image} />
+//         <Card.Body>
+//           <Card.Title>{category.title}</Card.Title>
+//           <Card.Text>{category.description}</Card.Text>
+//         </Card.Body>
+//       </Card>
+//     </div>
+//   </Link>
+// );
 
 const BrowseEvents = () => {
   // Sample data for categories
@@ -107,7 +110,7 @@ const BrowseEvents = () => {
         <Row>
           {categories.map((category) => (
             <Col xs={12} md={6} lg={4} key={category.id} className="mb-4">
-              <CategoryCard category={category} />
+              <CustomCard category={category} />
             </Col>
           ))}
         </Row>
