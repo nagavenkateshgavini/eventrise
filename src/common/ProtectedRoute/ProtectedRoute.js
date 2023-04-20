@@ -1,18 +1,17 @@
-import React, { useContext, useEffect } from "react";
-import { Routes, Route, Link, Navigate, useNavigate } from "react-router-dom";
-import UserContext from "../../UserContext";
+import { Navigate, useLocation } from "react-router-dom";
+// import UserContext from "../../UserContext";
+// import { useContext } from "react";
 
-const ProtectedRoute = (props) => {
-  const { isAuthenticated } = useContext(UserContext);
-  const navigate = useNavigate();
+const ProtectedWrapper = ({ children }) => {
+  const location = useLocation();
+  // const { isAuthenticated } = useContext(UserContext);
+  const isAuthenticated = sessionStorage.getItem("auth");
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigate("/login", { replace: true });
-    }
-  }, [isAuthenticated, navigate]);
-
-  return isAuthenticated;
+  if (isAuthenticated) {
+    return children;
+  } else {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
 };
 
-export default ProtectedRoute;
+export default ProtectedWrapper;

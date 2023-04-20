@@ -42,13 +42,14 @@ function Login() {
       .then((res) => {
         if (res.status === 200) {
           console.log("res", res.data);
+          sessionStorage.setItem("auth", true);
           setUser({
+            isAuthenticated: true,
             username: res.data.name,
             email: res.data.email,
             userId: res.data.userId,
-            isAuthenticated: true,
           });
-          navigate("/");
+          navigate("/browse");
         }
       })
       .catch((error) => {

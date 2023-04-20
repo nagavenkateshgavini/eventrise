@@ -58,14 +58,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/userRegistration"
-            element={
-              <ProtectedRoute>
-                <UserRegistration />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/userRegistration" element={<UserRegistration />} />
           <Route path="/login" element={<Login />} />
           <Route
             path="/userProfile"
