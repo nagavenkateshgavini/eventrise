@@ -90,6 +90,7 @@ const UserRegistration = () => {
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
+      console.log(formData, `${process.env.REACT_APP_BASE_URL}createUser`)
       axios
         .post(`${process.env.REACT_APP_BASE_URL}createUser`, formData)
         .then((res) => {
@@ -377,7 +378,9 @@ const UserRegistration = () => {
                           placeholder="State"
                           name="state"
                           value={formData.state}
-                          onChange={handleChange}
+                          onChange={(e, { name, value }) =>
+                          handleChange({ target: { name, value } })
+                          }
                           error={errors.state && { content: errors.state }}
                           fluid
                           selection
