@@ -8,7 +8,7 @@ const ProfileCard = (props) => {
       <Card style={{ width: "18rem" }}>
         <img src={img1}></img>
       </Card>
-    </div>
+    </div>  
   );
 };
 
