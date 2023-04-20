@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Segment } from "semantic-ui-react";
 import { Row, Col, ListGroup } from "react-bootstrap";
 import ProfileCard from "../../common/ProfileCard/ProfileCard";
@@ -8,16 +8,16 @@ import "./userProfile.css";
 import EventCards from "../ProfileEventCards/ProfileEventCards";
 import HostedEvents from "../HostedEvents/hostedEvents";
 import Footer from "../../common/Footer/footer";
+import UserContext from "../../UserContext";
 
 const UserProfile = () => {
+  const { email } = useContext(UserContext);
   const [userData, setUserData] = useState({});
   const [showUserDetails, setUserDetails] = useState(true);
   const [showAttendedEvents, setAttendedEvents] = useState(false);
   const [showUpcomingEvents, setUpcomingEvents] = useState(false);
   const [showAnalytics, setAnalytics] = useState(false);
   const showUserDetailsbool = () => {
-    let _ = showUserDetails;
-    console.log("before", _);
     setUserDetails(true);
     setAttendedEvents(false);
     setUpcomingEvents(false);
@@ -25,8 +25,6 @@ const UserProfile = () => {
   };
 
   const showAttendedbool = () => {
-    let _ = showUserDetails;
-    console.log("before", _);
     setUserDetails(false);
     setAttendedEvents(true);
     setUpcomingEvents(false);
@@ -34,8 +32,6 @@ const UserProfile = () => {
   };
 
   const showUpcomingbool = () => {
-    let _ = showUserDetails;
-    console.log("before", _);
     setUserDetails(false);
     setAttendedEvents(false);
     setUpcomingEvents(true);
@@ -43,8 +39,6 @@ const UserProfile = () => {
   };
 
   const showHosted = () => {
-    let _ = showUserDetails;
-    console.log("before", _);
     setUserDetails(false);
     setAttendedEvents(false);
     setUpcomingEvents(false);
@@ -52,7 +46,7 @@ const UserProfile = () => {
   };
 
   useEffect(() => {
-    const userMail = { email: "gaali.v@northeastern.edu" };
+    const userMail = { email: email };
 
     let isMounted = true;
 
@@ -73,7 +67,7 @@ const UserProfile = () => {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [email]);
   const arr = [1, 2, 3, 4, 5];
   return (
     <div>

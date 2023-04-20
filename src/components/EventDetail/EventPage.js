@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import { useParams } from "react-router-dom";
 import {
   Segment,
   Image,
@@ -13,34 +13,18 @@ import {
 } from "semantic-ui-react";
 import img1 from "../../assets/tickets.jpeg";
 import Footer from "../../common/Footer/footer";
+import axios from "axios";
+import "./EventPage.css";
 
-const EventDetails = ({ eventId }) => {
-  console.log("entering details");
+const EventDetails = () => {
+  const eventId = useParams().eventId;
   const [event, setEvent] = useState(null);
 
   useEffect(() => {
-    fetchEventDetails(eventId).then((data) => setEvent(data));
+    axios
+      .get(`${process.env.REACT_APP_BASE_URL}api/events/${eventId}`)
+      .then((res) => setEvent(res.data));
   }, [eventId]);
-
-  const fetchEventDetails = async (id) => {
-    // Replace this function with your actual API call
-    const mockApiCall = new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({
-          id,
-          imageUrl: "https://example.com/image.jpg",
-          title: "Sample Event",
-          description: "This is a sample event description.",
-          date: "2023-05-01",
-          location: "New York City",
-          status: "active",
-        });
-      }, 1000);
-    });
-
-    const eventData = await mockApiCall;
-    return eventData;
-  };
 
   if (!event) {
     return (
@@ -49,59 +33,69 @@ const EventDetails = ({ eventId }) => {
       </Loader>
     );
   }
-
-  const { imageUrl, title, description, date, location, status } = event;
-
+  const { title, description, event_date, location, status } = event;
   return (
     <div>
-      <Container className="m-4">
-        <Grid centered columns={2}>
-          <Grid.Column>
-            <Segment>
-              <Image src={img1} centered />
-              <Header as="h2" textAlign="center">
-                {title}
-              </Header>
-              <Grid stackable>
-                <Grid.Column mobile={16} computer={4}>
-                  <strong>Date:</strong>
-                </Grid.Column>
-                <Grid.Column mobile={16} computer={12}>
-                  <Icon name="calendar" />
-                  {new Date(date).toLocaleDateString()}
-                </Grid.Column>
-              </Grid>
-              <Grid>
-                <Grid.Column mobile={16} computer={4}>
-                  <strong>Location:</strong>
-                </Grid.Column>
-                <Grid.Column mobile={16} computer={12}>
-                  <Icon name="map marker alternate" />
-                  {location}
-                </Grid.Column>
-              </Grid>
-              <Grid>
-                <Grid.Column mobile={16} computer={4}>
-                  <strong>Status:</strong>
-                </Grid.Column>
-                <Grid.Column mobile={16} computer={12}>
-                  <Label color={status === "active" ? "green" : "red"}>
-                    {status}
-                  </Label>
-                </Grid.Column>
-              </Grid>
+      <Container fluid className="m-4">
+        <Grid centered>
+          <Grid.Row>
+            <Grid.Column mobile={16} tablet={8} computer={6} largeScreen={6}>
               <Segment>
+                <Image src={img1} centered />
                 <Header as="h2" textAlign="center">
-                  About Event
+                  {title}
                 </Header>
-                <hr />
-                {description}
+                <Grid>
+                  <Grid.Column mobile={8} computer={4}>
+                    <strong>Date:</strong>
+                  </Grid.Column>
+                  <Grid.Column mobile={8} computer={12}>
+                    <Icon name="calendar" />
+                    {new Date(event_date).toLocaleDateString()}
+                  </Grid.Column>
+                </Grid>
+                <Grid>
+                  <Grid.Column mobile={8} computer={4}>
+                    <strong>Time:</strong>
+                  </Grid.Column>
+                  <Grid.Column mobile={8} computer={12}>
+                    <Icon name="clock" />
+                    {new Date(event_date).toLocaleTimeString()}
+                  </Grid.Column>
+                </Grid>
+                <Grid>
+                  <Grid.Column mobile={8} computer={4}>
+                    <strong>Location:</strong>
+                  </Grid.Column>
+                  <Grid.Column mobile={8} computer={12}>
+                    <Icon name="map marker alternate" />
+                    {location}
+                  </Grid.Column>
+                </Grid>
+                <Grid>
+                  <Grid.Column mobile={8} computer={4}>
+                    <strong>Status:</strong>
+                  </Grid.Column>
+                  <Grid.Column mobile={8} computer={12}>
+                    <Label color={status === "approved" ? "green" : "red"}>
+                      {status}
+                    </Label>
+                  </Grid.Column>
+                </Grid>
+                <Segment>
+                  <Header as="h2" textAlign="center">
+                    About Event
+                  </Header>
+                  <hr />
+
+                  {description}
+                </Segment>
+                <div style={{ textAlign: "center" }}>
+                  <Button color="green">Attend Event</Button>
+                </div>
               </Segment>
-              <div style={{ textAlign: "center" }}>
-                <Button color="green">Attend Event</Button>
-              </div>
-            </Segment>
-          </Grid.Column>
+            </Grid.Column>
+          </Grid.Row>
         </Grid>
       </Container>
       <Footer />
