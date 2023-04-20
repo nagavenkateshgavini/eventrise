@@ -1,0 +1,96 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+  .form-label {
+    text-align: left;
+  }
+}
+
+.amount-card {
+  font-size: 1.25rem;
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 1px 5px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.amount-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.mainComponent{
+  margin-top: 2rem;
+}
+
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  filter: blur(15px);
+  opacity: 1;
+}
+
+.background-image-dark{
+  background-image: url('../../assets/celebration.jpeg');
+}
+
+.registration-card {
+  padding: 30px;
+  margin: 100px auto;
+  width: 75vw;
+  height: 75vw;
+  max-width: 90%;
+  max-height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+  background-color: rgba(255, 255, 255, 0.3) !important; /* Adjust the last value (0.7) for different opacity levels */
+}
+
+.form-label {
+  color: #fff;
+}
+
+.custom-checkbox{
+  margin-top: 25px;
+}
+
+.custom-checkbox .form-check-input:checked ~ .form-check-label::before {
+  background-color: #007bff;
+}
+
+.custom-checkbox .form-check-label::before {
+  border-color: #6c757d;
+}
+
+.submit-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: #0069d9;
+  color: #fff;
+}
