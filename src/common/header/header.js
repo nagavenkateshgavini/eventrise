@@ -27,7 +27,7 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  const { username, email, userId } = useContext(UserContext);
+  const { username } = useContext(UserContext);
   return (
     <Navbar
       collapseOnSelect
@@ -46,7 +46,7 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="justify-content-end flex-grow-1 pe-3">
-            <Link className="link" to="/features">
+            <Link className="link" to="/browse">
               Features
             </Link>
             <Link className="link" to="/pricing">
@@ -94,7 +94,7 @@ const Header = () => {
                 style={{
                   fontSize: "16px",
                   fontWeight: "500",
-                  color: "white", // Choose a suitable color
+                  color: `${scrollPosition > 50 ? "black" : "white"}`, // Choose a suitable color
                   lineHeight: "50px",
                   verticalAlign: "middle",
                   marginLeft: "5px",

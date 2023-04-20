@@ -11,6 +11,8 @@ import Header from "./common/header/header";
 import BrowseEvents from "./components/Browse Events/browseEvents";
 import EventConfirm from "./components/Events/eventCofirmation";
 import Admin from "./components/adminPage/admin";
+import Categories from "./components/Categories/categories";
+import ProtectedRoute from "./common/ProtectedRoute/ProtectedRoute";
 
 function App() {
   const [user, setUser] = useState({
@@ -22,18 +24,59 @@ function App() {
   return (
     <UserContext.Provider value={{ ...user, setUser }}>
       <Header />
-      {/* <span class="ripple-gradient"/> */}
-      {/* <div className="ripple-gradient"></div> */}
       <div style={{ marginTop: "70px" }}>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/create" element={<CreateEvent />} />
-          <Route path="/eventconfirmation" element={<EventConfirm />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/userRegistration" element={<UserRegistration />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/create"
+            element={
+              <ProtectedRoute>
+                <CreateEvent />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/eventconfirmation"
+            element={
+              <ProtectedRoute>
+                <EventConfirm />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <Admin />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/userRegistration"
+            element={
+              <ProtectedRoute>
+                <UserRegistration />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/login" element={<Login />} />
-          <Route path="/userProfile" element={<UserProfile />} />
+          <Route
+            path="/userProfile"
+            element={
+              <ProtectedRoute>
+                <UserProfile />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/browse" element={<BrowseEvents />} />
+          <Route path="/categories/:categoryName" element={<Categories />} />
         </Routes>
       </div>
     </UserContext.Provider>

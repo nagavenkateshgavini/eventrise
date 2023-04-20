@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Form, Label, Segment, Button, Grid } from "semantic-ui-react";
+import { Form, Segment, Button, Grid } from "semantic-ui-react";
 import { Dropdown } from "semantic-ui-react";
 import PhoneInput from "react-phone-input-2";
 import { useNavigate } from "react-router-dom";
 import { validations } from "../../utils/validation";
 import axios from "axios";
-import Header from "../header/header";
+
 
 function ProfileForm({ userData }) {
   const navigate = useNavigate();
@@ -33,6 +33,7 @@ function ProfileForm({ userData }) {
     e.preventDefault();
 
     let newErrors = validations(formData);
+    console.log("errors",newErrors)
     if (Object.keys(newErrors).length > 0) {
       console.log("errors", newErrors);
       setErrors(newErrors);
@@ -65,6 +66,7 @@ function ProfileForm({ userData }) {
               name="name"
               value={formData.name}
               onChange={handleChange}
+              error={errors.name && { content: errors.name }}
             />
           </Form.Group>
           <Form.Group widths={2}>

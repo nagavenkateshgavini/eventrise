@@ -1,26 +1,26 @@
 import React from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Carousel
-} from "react-bootstrap";
+import { Container, Row, Col, Card, Carousel } from "react-bootstrap";
 import "./browseEvents.css";
 import FAQSection from "../../common/accordian";
 import Footer from "../../common/Footer/footer";
+import { Link } from "react-router-dom";
 
 const CategoryCard = ({ category }) => (
-  <Card
-    onClick={() => (window.location.href = category.link)}
-    className="shadow-sm cursor-pointer"
+  <Link
+    to={category.link}
+    style={{
+      textDecoration: "none",
+      color: "black",
+    }}
   >
-    <Card.Img variant="top" src={category.image} />
-    <Card.Body>
-      <Card.Title>{category.title}</Card.Title>
-      <Card.Text>{category.description}</Card.Text>
-    </Card.Body>
-  </Card>
+    <Card className="shadow-sm cursor-pointer">
+      <Card.Img variant="top" src={category.image} />
+      <Card.Body>
+        <Card.Title>{category.title}</Card.Title>
+        <Card.Text>{category.description}</Card.Text>
+      </Card.Body>
+    </Card>
+  </Link>
 );
 
 const BrowseEvents = () => {

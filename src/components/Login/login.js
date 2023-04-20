@@ -40,12 +40,13 @@ function Login() {
     axios
       .post(`${process.env.REACT_APP_BASE_URL}login`, details)
       .then((res) => {
-        if (res.status == 200) {
+        if (res.status === 200) {
           console.log("res", res.data);
           setUser({
             username: res.data.name,
             email: res.data.email,
             userId: res.data.userId,
+            isAuthenticated: true,
           });
           navigate("/");
         }

@@ -105,6 +105,9 @@ const UserProfile = () => {
             <ListGroup.Item className="cursor-pointer" onClick={showHosted}>
               Events Analytics
             </ListGroup.Item>
+            <ListGroup.Item className="cursor-pointer" onClick={showHosted}>
+              Pending events
+            </ListGroup.Item>
           </ListGroup>
         </Col>
         <Col
@@ -114,7 +117,7 @@ const UserProfile = () => {
           className="mb-3 p-2"
         >
           {showUserDetails && (
-            <Segment >
+            <Segment>
               <div className="display-5"> Account Information</div>
               <hr />
               <ProfileCard />
@@ -144,7 +147,7 @@ const UserProfile = () => {
           {showAnalytics && <HostedEvents />}
         </Col>
       </Row>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

@@ -31,7 +31,7 @@ const UserRegistration = () => {
     email: "",
     password: "",
     gender: "",
-    age: 0,
+    age: "",
     street1: "",
     street2: "",
     city: "",
@@ -46,10 +46,12 @@ const UserRegistration = () => {
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
+    setErrors({});
     setFormData({ ...formData, [name]: value });
   };
   const isNotEmpty = (value) => {
-    return value.trim() !== "";
+    let val = String(value);
+    return val.trim() !== "";
   };
 
   const validations = (formData) => {
@@ -89,7 +91,7 @@ const UserRegistration = () => {
         .then((res) => {
           if (res.status === 201) {
             console.log("I'm entering", res);
-            navigate("/");
+            navigate("/login");
           }
         })
         .catch((error) => {
@@ -122,7 +124,7 @@ const UserRegistration = () => {
           <Grid className="p-4">
             <Grid.Row centered columns={2}>
               <Grid.Column mobile={16} computer={8}>
-                <img src={img1} />
+                <img src={img1} alt="something" />
               </Grid.Column>
               <Grid.Column>
                 <Form onSubmit={handleSubmit}>
@@ -228,19 +230,22 @@ const UserRegistration = () => {
                         </Label>
                       </Grid.Column>
                       <Grid.Column width={13}>
-                        <Dropdown
-                          style={{ width: isMobile ? "100%" : "50%" }}
-                          placeholder="Select Gender"
-                          fluid
-                          selection
-                          options={genderOptions}
-                          name="gender"
-                          value={formData.gender}
-                          onChange={(e, { name, value }) =>
-                            handleChange({ target: { name, value } })
-                          }
+                        <Form.Input
                           error={errors.gender && { content: errors.gender }}
-                        />
+                        >
+                          <Dropdown
+                            style={{ width: isMobile ? "100%" : "50%" }}
+                            placeholder="Select Gender"
+                            fluid
+                            selection
+                            options={genderOptions}
+                            name="gender"
+                            value={formData.gender}
+                            onChange={(e, { name, value }) =>
+                              handleChange({ target: { name, value } })
+                            }
+                          />
+                        </Form.Input>
                       </Grid.Column>
                     </Grid>
                   </Form.Field>
@@ -442,14 +447,22 @@ const UserRegistration = () => {
                         </Label>
                       </Grid.Column>
                       <Grid.Column width={13}>
-                        <PhoneInput
-                          style={{ width: isMobile ? "100%" : "50%" }}
-                          country={"us"}
-                          value={formData.phoneNumber}
-                          name="phoneNumber"
-                          onChange={handlePhoneNumberChange}
-                          placeholder="Enter phone number"
-                        />
+                        <Form.Input
+                          error={
+                            errors.phoneNumber && {
+                              content: errors.phoneNumber,
+                            }
+                          }
+                        >
+                          <PhoneInput
+                            style={{ width: isMobile ? "100%" : "50%" }}
+                            country={"us"}
+                            value={formData.phoneNumber}
+                            name="phoneNumber"
+                            onChange={handlePhoneNumberChange}
+                            placeholder="Enter phone number"
+                          />
+                        </Form.Input>
                       </Grid.Column>
                     </Grid>
                   </Form.Field>
