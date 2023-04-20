@@ -39,6 +39,21 @@ export default function Admin() {
         }
     }
 
+    const deleteEvent = async (event_id) => {
+        console.log("delete event called")
+        const url = `${process.env.REACT_APP_BASE_URL}deleteEvent`
+        const data = { event_id: event_id }
+        console.log(data)
+        try {
+            let res = await Axios.delete(url, {data: data})
+            console.log(res)
+            loadEvents()
+        }
+        catch(e) {
+            console.log("Issue with the delete event api call", e)
+        }
+    }
+
   return ( 
    <>
     <Header />
@@ -58,7 +73,7 @@ export default function Admin() {
                         <th>Event details</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className='text-colors'>
                        {
                         events.map((event, index) => (
                             <tr>
@@ -67,13 +82,22 @@ export default function Admin() {
                                 <td>{event.event_date.split("T")[0]}</td>
                                 <td>{event.status}</td>
                                 <td>
-                                    <Link className="btn btn-primary m-1"
-                                    onClick={() => editEvent(event.event_id)}>
-                                        <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-                                    </Link>
-                                    <Link className="btn btn-danger">
-                                        <i class="fa fa-trash-o" aria-hidden="true">Delete</i>
-                                    </Link>
+
+                                <Link className="btn btn-primary" to={`/events/${event.event_id}`}>
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                </Link>
+
+                                {event.status === 'pending' ? (
+                                        <Link className="btn btn-primary m-2"
+                                        onClick={() => editEvent(event.event_id)}>
+                                            <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                        </Link>
+                                    ) : null
+                                }
+                                <Link className="btn btn-danger"
+                                onClick={() => deleteEvent(event.event_id)}>
+                                    <i class="fa fa-trash-o" aria-hidden="true">Delete</i>
+                                </Link>
                                 </td>
                             </tr>
                         ))
