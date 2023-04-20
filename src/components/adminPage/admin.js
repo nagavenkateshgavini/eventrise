@@ -94,7 +94,7 @@ export default function Admin() {
                                         </Link>
                                     ) : null
                                 }
-                                <Link className="btn btn-danger"
+                                <Link className="btn btn-danger m-1"
                                 onClick={() => deleteEvent(event.event_id)}>
                                     <i class="fa fa-trash-o" aria-hidden="true">Delete</i>
                                 </Link>
