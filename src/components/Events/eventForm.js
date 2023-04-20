@@ -27,7 +27,6 @@ export default function EventForm() {
   };
 
   const validateForm = () => {
-    console.log("validation called");
     const {
       title,
       event_date,

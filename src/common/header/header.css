@@ -27,10 +27,39 @@
   border-radius: 15px 0px 20px 0px;
 }
 .menu-title {
-  color: #E4A11B;
+  color: #e4a11b;
   font-size: 14px;
   font-weight: 600;
 }
 .menu-title:hover {
-   color: #1b83e4;
+  color: #1b83e4;
 }
+/* .navbar-toggler-icon{
+  background-color: white;
+}
+.scrolled .navbar-toggler-icon{
+  background-color: black;
+
+} */
+/* .navbar-toggler-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  background-image: var(--bs-navbar-toggler-icon-bg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+} */
+/* .scrolled .navbar-toggler-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+   background-image: var(--bs-navbar-toggler-icon-bg); 
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  background-color: black;
+  padding: 2px;
+} */
