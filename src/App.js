@@ -13,6 +13,8 @@ import EventConfirm from "./components/Events/eventCofirmation";
 import Admin from "./components/adminPage/admin";
 import Categories from "./components/Categories/categories";
 import ProtectedRoute from "./common/ProtectedRoute/ProtectedRoute";
+import NotFound from "./common/pageNotFound/pageNotFound";
+import EventDetails from "./components/EventDetail/EventPage";
 
 function App() {
   const [user, setUser] = useState({
@@ -70,6 +72,8 @@ function App() {
           />
           <Route path="/browse" element={<BrowseEvents />} />
           <Route path="/categories/:categoryName" element={<Categories />} />
+          <Route path="/event/:eventId" element={<EventDetails />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </UserContext.Provider>

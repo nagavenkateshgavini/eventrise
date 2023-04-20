@@ -58,8 +58,8 @@ const Header = () => {
               color="warning"
               className="nav-dropdown mt-1"
             >
-              <NavDropdown.Item as={HashLink} smooth to="#action/3.1">
-                Action
+              <NavDropdown.Item as={HashLink} smooth to="/create">
+                Create
               </NavDropdown.Item>
               <NavDropdown.Item as={HashLink} smooth to="#action/3.2">
                 Another action

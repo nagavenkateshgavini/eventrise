@@ -15,6 +15,9 @@ export const validations = (formData) => {
   if (formData.age < 18 && formData.age >= 100) {
     newErrors.age = "Your Age doesn't meet requirements";
   }
+  if (isNaN(formData.age)) {
+    newErrors.age = "Enter valid Age It should not have string";
+  }
 
   const passRe =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;

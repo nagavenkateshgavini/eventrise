@@ -1,5 +1,5 @@
 import React from "react";
-import { Segment, Card, Image } from "semantic-ui-react";
+import { Card, Image } from "semantic-ui-react";
 import img1 from "../../assets/tickets.jpeg";
 
 
