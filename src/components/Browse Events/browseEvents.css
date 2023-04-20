@@ -1,0 +1,12 @@
+.cream-gradient-bg {
+  background: linear-gradient(135deg, #fffdd0 0%, #f5deb3 100%);
+}
+
+.events {
+  background-image: linear-gradient(
+    150deg,
+    rgb(45, 36, 36) 0%,
+    rgba(255, 165, 0, 1) 10%,
+    rgb(74, 72, 72) 100%
+  ) !important;
+}

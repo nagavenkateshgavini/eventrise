@@ -7,10 +7,11 @@ const ProfileCard = (props) => {
   return (
     <div>
       <Card style={{ width: "18rem" }}>
-        <img src={img1}></img>
+        <img src={img1} alt="something"></img>
+        
       </Card>
       <Button className="mt-2" variant="warning">Upload</Button>
-    </div>  
+    </div>
   );
 };
 

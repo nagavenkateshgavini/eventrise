@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Header from "../../common/header/header";
 import Form from 'react-bootstrap/Form';
 import Footer from "../../common/Footer/footer";
 import { Row, Col, Button } from 'react-bootstrap';
@@ -74,7 +73,6 @@ export default function EventForm() {
 
   return (
     <>
-        <Header />
         <FormContainer>
             <Row className='justify-content-center'>
                 <Col xs={12} md={6}>

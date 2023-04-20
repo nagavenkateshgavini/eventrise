@@ -19,3 +19,33 @@ body {
     100% - 60px
   ); 
 } */
+
+.ripple-gradient {
+    position: relative;
+    display: inline-block;
+    padding: 10px;
+    color: #fff;
+    background: linear-gradient(to right, #000, #00f);
+    cursor: pointer;
+    overflow: hidden;
+    height: '10px'
+  }
+    .ripple-gradient:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+  }
+
+  .ripple-gradient:active:before {
+    width: 200px;
+    height: 200px;
+    opacity: 1;
+    transition: all 0.4s ease-out;
+  }
