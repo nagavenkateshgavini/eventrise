@@ -1,11 +1,15 @@
 import { Container, Button, ButtonGroup, Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import "./styles.css";
 
-function sendToHomepage() {
-  //Need to redirect
-}
-
 function Completion() {
+  const navigate = useNavigate();
+
+  function sendToHomepage() {
+    navigate("/");
+  }
+
+
   return (
     <Container className="py-4">
       <div className="background-image background-image-bright"></div>

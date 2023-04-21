@@ -13,7 +13,7 @@ const Registration = () => {
 
   const handleSubmit = () => {
     if (agreement) {
-      navigate(`/payment/200`);
+      navigate(`/payment/${ticket_price}`, { state: { eventId, ticket_price }});
     }
   };
 
@@ -33,7 +33,7 @@ const Registration = () => {
             <Form.Label className="form-label" style={{ color: "black" }}>
               Ticket Price
             </Form.Label>
-            <Form.Control type="number" value={200} readOnly disabled />
+            <Form.Control type="number" value={ticket_price} readOnly disabled />
           </Form.Group>
           <Form.Group controlId="agreement" className="custom-checkbox">
             <Form.Check
