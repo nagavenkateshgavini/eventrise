@@ -105,44 +105,6 @@ function Categories() {
     );
   };
 
-  // Sample event data, replace with your own data
-  // const events = [
-  //   {
-  //     event_id: 1234,
-  //     title: "Event 1",
-  //     description: "Event 1 description.",
-  //     date: "2023-05-01",
-  //     image: img1,
-  //   },
-  //   {
-  //     event_id: 12345,
-  //     title: "Event 2",
-  //     description: "Event 2 description.",
-  //     date: "2023-05-15",
-  //     image: img2,
-  //   },
-  //   {
-  //     event_id: 12346,
-  //     title: "Event 3",
-  //     description: "Event 2 description.",
-  //     date: "2023-05-15",
-  //     image: img2,
-  //   },
-  //   {
-  //     event_id: 123456,
-  //     title: "Event 4",
-  //     description: "Event 2 description.",
-  //     date: "2023-05-15",
-  //     image: img2,
-  //   },
-  //   {
-  //     event_id: 1234678,
-  //     title: "Event 5",
-  //     description: "Event 2 description.",
-  //     date: "2023-05-15",
-  //     image: img2,
-  //   },
-  // ];
 
   return (
     <div>
