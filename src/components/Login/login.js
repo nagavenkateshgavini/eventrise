@@ -65,7 +65,12 @@ function Login() {
   const googleAuth = () => {
     console.log("I'm entering...google Auth");
     axios
-      .get(`${process.env.REACT_APP_BASE_URL}auth/google`)
+      .get(`${process.env.REACT_APP_BASE_URL}auth/google`, {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      })
       .then((response) => {
         console.log("data", response.data);
       })

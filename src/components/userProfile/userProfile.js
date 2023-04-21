@@ -97,8 +97,8 @@ const UserProfile = () => {
 
   return (
     <div>
-      <Row className="mt-2" style={{ height: "100vh" }}>
-        <Col xs={12} md={3} style={{ backgroundColor: "#f8f7fa" }}>
+      <Row className="mt-2">
+        <Col xs={12} md={3} style={{ backgroundColor: "#f8f7fa",height:"100vh" }} >
           <ListGroup
             variant="flush"
             className="mt-3 p-2"
@@ -108,7 +108,7 @@ const UserProfile = () => {
               className="cursor-pointer"
               onClick={showUserDetailsbool}
             >
-              User Details....................
+              User Details
             </ListGroup.Item>
             <ListGroup.Item
               className="cursor-pointer"
