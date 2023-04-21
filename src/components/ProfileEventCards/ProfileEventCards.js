@@ -50,7 +50,7 @@ function EventCards({ type }) {
           >
             <Card.Content>
               <Image floated="left" size="medium" src={img1} alt="No" />
-              <Card.Header>{event.title.title()}</Card.Header>
+              <Card.Header>{event.title}</Card.Header>
               <Card.Meta>location: {event.location}</Card.Meta>
               <Card.Content> Date: {event.event_date}</Card.Content>
               {isExpanded
