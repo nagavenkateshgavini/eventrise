@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   Segment,
   Image,
@@ -15,11 +15,11 @@ import img1 from "../../assets/tickets.jpeg";
 import Footer from "../../common/Footer/footer";
 import axios from "axios";
 import "./EventPage.css";
-import { Link } from "react-router-dom";
 
 const EventDetails = () => {
   const eventId = useParams().eventId;
   const [event, setEvent] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -34,7 +34,11 @@ const EventDetails = () => {
       </Loader>
     );
   }
-  const { title, description, event_date, location, status,ticket_price } = event;
+  const { title, description, event_date, location, status, ticket_price } =
+    event;
+  const handleClick = () => {
+    navigate("/eventRegister", { state: { eventId, ticket_price } });
+  };
   return (
     <div>
       <Container fluid className="m-4">
@@ -101,15 +105,10 @@ const EventDetails = () => {
                   {description}
                 </Segment>
                 <div style={{ textAlign: "center" }}>
-                  <Link
-                    to={{
-                      pathname: "/eventRegister",
-                      state: { eventId, ticket_price },
-                    }}
-                  >
-                    {" "}
-                    <Button color="green">Attend Event</Button>
-                  </Link>
+                  {" "}
+                  <Button color="green" onClick={handleClick}>
+                    Attend Event
+                  </Button>
                 </div>
               </Segment>
             </Grid.Column>
