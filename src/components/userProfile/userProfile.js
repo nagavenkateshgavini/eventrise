@@ -13,62 +13,25 @@ import UserContext from "../../UserContext";
 const UserProfile = () => {
   const { email } = useContext(UserContext);
   const [userData, setUserData] = useState({});
-  const [showUserDetails, setUserDetails] = useState(true);
-  const [showAttendedEvents, setAttendedEvents] = useState(false);
-  const [showUpcomingEvents, setUpcomingEvents] = useState(false);
-  const [showAnalyticsbool, setAnalytics] = useState(false);
-  const [showPending, setPending] = useState(false);
-  const [showHosted, setHosted] = useState(false);
-  const showUserDetailsbool = () => {
-    setUserDetails(true);
-    setAttendedEvents(false);
-    setUpcomingEvents(false);
-    setAnalytics(false);
-    setPending(false);
-    setHosted(false);
-  };
+  const [viewState, setViewState] = useState({
+    showUserDetails: true,
+    showAttendedEvents: false,
+    showUpcomingEvents: false,
+    showAnalyticsbool: false,
+    showPending: false,
+    showHosted: false,
+  });
 
-  const showAttendedbool = () => {
-    setUserDetails(false);
-    setAttendedEvents(true);
-    setUpcomingEvents(false);
-    setAnalytics(false);
-  };
-
-  const showUpcomingbool = () => {
-    setUserDetails(false);
-    setAttendedEvents(false);
-    setUpcomingEvents(true);
-    setAnalytics(false);
-    setPending(false);
-    setHosted(false);
-  };
-
-  const showAnalytics = () => {
-    setUserDetails(false);
-    setAttendedEvents(false);
-    setUpcomingEvents(false);
-    setAnalytics(true);
-    setPending(false);
-    setHosted(false);
-  };
-
-  const showPendingEvents = () => {
-    setUserDetails(false);
-    setAttendedEvents(false);
-    setUpcomingEvents(false);
-    setAnalytics(false);
-    setPending(true);
-    setHosted(false);
-  };
-
-  const showHostedEvents = () => {
-    setUserDetails(false);
-    setAttendedEvents(false);
-    setUpcomingEvents(false);
-    setAnalytics(false);
-    setPending(false);
-    setHosted(true);
+  const setView = (viewName) => {
+    setViewState((prevState) => ({
+      ...prevState,
+      showUserDetails: viewName === "userDetails",
+      showAttendedEvents: viewName === "attendedEvents",
+      showUpcomingEvents: viewName === "upcomingEvents",
+      showAnalyticsbool: viewName === "analytics",
+      showPending: viewName === "pendingEvents",
+      showHosted: viewName === "hostedEvents",
+    }));
   };
 
   useEffect(() => {
@@ -94,11 +57,14 @@ const UserProfile = () => {
       isMounted = false;
     };
   }, [email]);
-
   return (
     <div>
       <Row className="mt-2">
-        <Col xs={12} md={3} style={{ backgroundColor: "#f8f7fa",height:"100vh" }} >
+        <Col
+          xs={12}
+          md={3}
+          style={{ backgroundColor: "#f8f7fa", height: "100vh" }}
+        >
           <ListGroup
             variant="flush"
             className="mt-3 p-2"
@@ -106,34 +72,37 @@ const UserProfile = () => {
           >
             <ListGroup.Item
               className="cursor-pointer"
-              onClick={showUserDetailsbool}
+              onClick={() => setView("userDetails")}
             >
               User Details
             </ListGroup.Item>
             <ListGroup.Item
               className="cursor-pointer"
-              onClick={showAttendedbool}
+              onClick={() => setView("attendedEvents")}
             >
               Attended Events
             </ListGroup.Item>
             <ListGroup.Item
               className="cursor-pointer"
-              onClick={showUpcomingbool}
+              onClick={() => setView("upcomingEvents")}
             >
               Upcoming Events
             </ListGroup.Item>
-            <ListGroup.Item className="cursor-pointer" onClick={showAnalytics}>
+            <ListGroup.Item
+              className="cursor-pointer"
+              onClick={() => setView("analytics")}
+            >
               Events Analytics
             </ListGroup.Item>
             <ListGroup.Item
               className="cursor-pointer"
-              onClick={showPendingEvents}
+              onClick={() => setView("Pending")}
             >
               Pending events
             </ListGroup.Item>
             <ListGroup.Item
               className="cursor-pointer"
-              onClick={showHostedEvents}
+              onClick={() => setView("hostedEvents")}
             >
               Hosted events
             </ListGroup.Item>
@@ -145,7 +114,7 @@ const UserProfile = () => {
           style={{ backgroundColor: "#f8f7fa" }}
           className="mb-3 p-2"
         >
-          {showUserDetails && (
+          {viewState.showUserDetails && (
             <Segment>
               <div className="display-5"> Account Information</div>
               <hr />
@@ -155,30 +124,30 @@ const UserProfile = () => {
             </Segment>
           )}
 
-          {showAttendedEvents && (
+          {viewState.showAttendedEvents && (
             <Segment className="m-3">
               <div className="display-5 mb-2">Attended Events</div>
               <EventCards type={"attendedEvents"} />
             </Segment>
           )}
 
-          {showUpcomingEvents && (
+          {viewState.showUpcomingEvents && (
             <Segment className="m-3">
               <div className="display-5 mb-2">Upcoming Events</div>
               <EventCards type={"upcomingEventsByUserId"} />
             </Segment>
           )}
 
-          {showAnalyticsbool && <EventAnalytics />}
+          {viewState.showAnalyticsbool && <EventAnalytics />}
 
-          {showPending && (
+          {viewState.showPending && (
             <Segment className="m-3">
               <div className="display-5 mb-2">Pending Events for Approval</div>
-              <EventCards type={"Pending"} />
+              <EventCards type={"pendingEvents"} />
             </Segment>
           )}
 
-          {showHosted && (
+          {viewState.showHosted && (
             <Segment className="m-3">
               <div className="display-5 mb-2">Hosted Events</div>
               <EventCards type={"hostedEvents"} />

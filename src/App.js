@@ -19,6 +19,7 @@ import Registration from "./components/EventRegister/Registration";
 import Payment from "./components/CardPayment/Payment";
 import PaymentEntry from "./components/PaymentEntry/PaymentEntry";
 import Completion from "./components/PaymentSuccessful/Completion";
+import UserDetailsWrapper from "./components/userDetailsWrapper/userDetailsWrapper";
 
 function App() {
   const [user, setUser] = useState({
@@ -31,86 +32,80 @@ function App() {
     <UserContext.Provider value={{ ...user, setUser }}>
       <Header />
       <div style={{ marginTop: "70px" }}>
-        <Routes>
-          {/* <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
-            }
-          /> */}
-          <Route
-            path="/create"
-            element={
-              <ProtectedRoute>
-                <CreateEvent />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/eventconfirmation"
-            element={
-              <ProtectedRoute>
-                <EventConfirm />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin"
-            element={
-              <ProtectedRoute>
-                <Admin />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/eventRegister"
-            element={
-              <ProtectedRoute>
-                <Registration />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/payment/:totalAmount"
-            element={
-              <ProtectedRoute>
-                <PaymentEntry />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/payment/cards/:amount"
-            element={
-              <ProtectedRoute>
-                <Payment />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/completion"
-            element={
-              <ProtectedRoute>
-                <Completion />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/userRegistration" element={<UserRegistration />} />
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/userProfile"
-            element={
-              <ProtectedRoute>
-                <UserProfile />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/" element={<BrowseEvents />} />
-          <Route path="/categories/:categoryName" element={<Categories />} />
-          <Route path="/event/:eventId" element={<EventDetails />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <UserDetailsWrapper>
+          <Routes>
+            <Route
+              path="/create"
+              element={
+                <ProtectedRoute>
+                  <CreateEvent />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/eventconfirmation"
+              element={
+                <ProtectedRoute>
+                  <EventConfirm />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute>
+                  <Admin />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/eventRegister"
+              element={
+                <ProtectedRoute>
+                  <Registration />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/payment/:totalAmount"
+              element={
+                <ProtectedRoute>
+                  <PaymentEntry />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/payment/cards/:amount"
+              element={
+                <ProtectedRoute>
+                  <Payment />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/completion"
+              element={
+                <ProtectedRoute>
+                  <Completion />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/userRegistration" element={<UserRegistration />} />
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/userProfile"
+              element={
+                <ProtectedRoute>
+                  <UserProfile />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/" element={<BrowseEvents />} />
+            <Route path="/categories/:categoryName" element={<Categories />} />
+            <Route path="/event/:eventId" element={<EventDetails />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </UserDetailsWrapper>
       </div>
     </UserContext.Provider>
   );

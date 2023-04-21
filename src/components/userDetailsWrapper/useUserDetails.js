@@ -1,15 +1,8 @@
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import axios from "axios";
 import UserContext from "../../UserContext";
 
 const useUserDetails = () => {
-//   const [user, setUsers] = useState({
-//     isAuthenticated: false,
-//     username: null,
-//     email: null,
-//     userId: null,
-//   });
-
   const { setUser } = useContext(UserContext);
   useEffect(() => {
     const storedToken = sessionStorage.getItem("token");
@@ -39,7 +32,7 @@ const useUserDetails = () => {
 
       fetchUserDetails();
     }
-  }, []);
+  }, [setUser]);
 
 };
 export default useUserDetails;

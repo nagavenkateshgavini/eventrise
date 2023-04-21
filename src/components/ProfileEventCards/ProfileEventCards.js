@@ -4,18 +4,20 @@ import img1 from "../../assets/tickets.jpeg";
 import UserContext from "../../UserContext";
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function EventCards({ type }) {
   const { userId } = useContext(UserContext);
   const [events, setEvents] = useState([]);
-
+  const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleDescription = () => {
     setIsExpanded(!isExpanded);
   };
-
+  const handleCardClick = (eventId) => {
+    navigate(`/event/${eventId}`, { state: { received: "user" } });
+  };
   const truncateDescription = (desc) => {
     const maxLength = 100; // Maximum characters to display before truncation
     return desc.length > maxLength ? desc.slice(0, maxLength) + "..." : desc;
@@ -37,29 +39,32 @@ function EventCards({ type }) {
     return (
       <div className="mb-2">
         {events.map((event) => (
-          <Link
-            to={`/event/${event.event_id}`}
-            style={{ textDecoration: "none", color: "black" }}
+          <Card
+            fluid
+            onClick={() => handleCardClick(event.event_id)}
+            style={{
+              textDecoration: "none",
+              color: "black",
+              cursor: "pointer",
+            }}
           >
-            <Card fluid>
-              <Card.Content>
-                <Image floated="left" size="medium" src={img1} alt="No" />
-                <Card.Header>{event.title}</Card.Header>
-                <Card.Meta>location: {event.location}</Card.Meta>
-                <Card.Content> Date: {event.event_date}</Card.Content>
-                {isExpanded
-                  ? event.description
-                  : truncateDescription(event.description)}
-                <span
-                  className="read-more-link me-2"
-                  onClick={toggleDescription}
-                  style={{ color: "blue", cursor: "pointer" }}
-                >
-                  {isExpanded ? " Read less" : " Read more"}
-                </span>
-              </Card.Content>
-            </Card>
-          </Link>
+            <Card.Content>
+              <Image floated="left" size="medium" src={img1} alt="No" />
+              <Card.Header>{event.title.title()}</Card.Header>
+              <Card.Meta>location: {event.location}</Card.Meta>
+              <Card.Content> Date: {event.event_date}</Card.Content>
+              {isExpanded
+                ? event.description
+                : truncateDescription(event.description)}
+              <span
+                className="read-more-link me-2"
+                onClick={toggleDescription}
+                style={{ color: "blue", cursor: "pointer" }}
+              >
+                {isExpanded ? " Read less" : " Read more"}
+              </span>
+            </Card.Content>
+          </Card>
         ))}
       </div>
     );

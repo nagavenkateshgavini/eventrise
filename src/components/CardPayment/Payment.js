@@ -31,7 +31,7 @@ function Payment() {
       var { clientSecret } = await result.json();
       setClientSecret(clientSecret);
     });
-  }, []);
+  }, [amount]);
 
   return (
     <>

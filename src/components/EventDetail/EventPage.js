@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import {
   Segment,
   Image,
@@ -20,12 +20,14 @@ const EventDetails = () => {
   const eventId = useParams().eventId;
   const [event, setEvent] = useState(null);
   const navigate = useNavigate();
+  const receivedLocation = useLocation();
 
   useEffect(() => {
+    console.log(receivedLocation);
     axios
       .get(`${process.env.REACT_APP_BASE_URL}api/events/${eventId}`)
       .then((res) => setEvent(res.data));
-  }, [eventId]);
+  }, [eventId, receivedLocation]);
 
   if (!event) {
     return (
@@ -37,7 +39,9 @@ const EventDetails = () => {
   const { title, description, event_date, location, status, ticket_price } =
     event;
   const handleClick = () => {
-    navigate("/eventRegister", { state: { eventId, ticket_price } });
+    navigate("/eventRegister", {
+      state: { eventId, ticket_price },
+    });
   };
   return (
     <div>
@@ -82,7 +86,7 @@ const EventDetails = () => {
                     <strong>Price:</strong>
                   </Grid.Column>
                   <Grid.Column mobile={8} computer={12}>
-                    <Icon name="money bill alternate" />
+                    <Icon name="dollar sign" />
                     {ticket_price}
                   </Grid.Column>
                 </Grid>
@@ -104,12 +108,14 @@ const EventDetails = () => {
 
                   {description}
                 </Segment>
-                <div style={{ textAlign: "center" }}>
-                  {" "}
-                  <Button color="green" onClick={handleClick}>
-                    Attend Event
-                  </Button>
-                </div>
+                {!receivedLocation.state && (
+                  <div style={{ textAlign: "center" }}>
+                    {" "}
+                    <Button color="green" onClick={handleClick}>
+                      Attend Event
+                    </Button>
+                  </div>
+                )}
               </Segment>
             </Grid.Column>
           </Grid.Row>
