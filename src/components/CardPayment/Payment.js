@@ -36,12 +36,16 @@ function Payment() {
   return (
     <>
       <div className="background-image background-image-light"></div>
-      <CardAmount totalAmount={amount} />
+      <div className="cardBox">
+        <CardAmount totalAmount={amount} />
+      </div>
+      <div className="paymentBox">
       {clientSecret && stripePromise && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
           <CheckoutForm />
         </Elements>
       )}
+      </div>
     </>
   );
 }

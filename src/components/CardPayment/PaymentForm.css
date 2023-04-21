@@ -7,14 +7,20 @@
   --radius: 3px;
 } 
 
-/* body {
+.paymentBox{
   padding: 20px;
   font-family: 'Raleway';
   display: flex;
   justify-content: center;
   font-size: 1.2em;
   color: var(--dark-terminal-color);
-} */
+}
+
+.cardBox {
+  display: flex;
+  justify-content: center;
+  margin-bottom: -85px;
+}
 
 main {
   width: 480px;

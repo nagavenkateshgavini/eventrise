@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Button, ButtonGroup, Modal, Card } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { ethers } from "ethers";
 import CardAmount from "../../common/CardPayment/CardAmount";
+import UserContext from "../../UserContext";
 import "./styles.css";
 
 const erc20Abi = require("../../abi/abi.json");
@@ -12,9 +13,12 @@ const SELLER_ADDRESS = "0x70997970C51812dc3A010C7d01b50e0d17dc79C8";
 
 const PaymentEntry = () => {
   const { totalAmount } = useParams();
+  const location = useLocation();
+  const { eventId } = location.state;
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [provider, setProvider] = useState(null);
+  const { userId } = useContext(UserContext);
 
   const handleConnectWallet = async () => {
     if (window.ethereum) {
@@ -30,7 +34,7 @@ const PaymentEntry = () => {
     }
   };
 
-  const handleButton1Click = async () => {
+  const handleButton1Click = async (value) => {
     console.log(provider);
     if (!provider) {
       setShowModal(true);
@@ -50,6 +54,7 @@ const PaymentEntry = () => {
     try {
       const tx = await tokenContract.transfer(SELLER_ADDRESS, paymentAmount);
       await tx.wait();
+      saveTicket('crypto');
       console.log("Payment transfer successful");
       navigate("/completion");
     } catch (error) {
@@ -59,11 +64,11 @@ const PaymentEntry = () => {
 
   const handleModalClose = () => setShowModal(false);
 
-  const handleButton2Click = async () => {
+  const saveTicket = async (type) => {
     const ticketData = {
-      user_id: 1,
-      event_id: 1,
-      payment_type: "cards",
+      user_id: userId,
+      event_id: eventId,
+      payment_type: type,
       created_time: new Date(),
     };
 
@@ -84,9 +89,13 @@ const PaymentEntry = () => {
     } catch (error) {
       console.error("Error adding ticket:", error);
     }
-
-    navigate("/payment/cards/" + totalAmount);
   };
+
+  const initiateCardPayment = () => 
+  {
+    saveTicket('cards');
+    navigate("/payment/cards/" + totalAmount);
+  }
 
   return (
     <Container className="py-4">
@@ -99,13 +108,13 @@ const PaymentEntry = () => {
             <ButtonGroup>
               <Button
                 className="payment-btn payment-btn-primary"
-                onClick={handleButton1Click}
+                onClick={() => handleButton1Click('crypto')}
               >
                 Pay using Crypto
               </Button>
               <Button
                 className="payment-btn payment-btn-secondary"
-                onClick={handleButton2Click}
+                onClick={initiateCardPayment}
               >
                 Pay using Debit/Credit cards
               </Button>
