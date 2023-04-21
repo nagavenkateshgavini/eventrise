@@ -2,14 +2,8 @@ import React, { useState } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./CardStyles.css";
-import music from "../../assets/browse_events/music.jpeg";
-import sports from "../../assets/browse_events/sports.jpeg";
-import health from "../../assets/browse_events/health.jpeg";
-import business from "../../assets/browse_events/business.jpeg";
-import hobbies from "../../assets/browse_events/hobbies.jpeg";
-import food from "../../assets/browse_events/food.jpeg";
 
-function CustomCard({ category },idx) {
+function CustomCard({ category }, idx) {
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
 
@@ -50,8 +44,8 @@ function CustomCard({ category },idx) {
             transform: `rotateY(${rotateY}deg) rotateX(${rotateX}deg) scale(1.05)`,
           }}
         >
-          <Card.Img variant="top" src={music} />
-          <Card.Body>
+          <Card.Img variant="top" src={category.image} className="image" />
+          <Card.Body className="cardBody">
             <Card.Title>{category.title}</Card.Title>
             <Card.Text>{category.description}</Card.Text>
           </Card.Body>

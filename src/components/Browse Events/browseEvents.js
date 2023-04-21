@@ -6,7 +6,12 @@ import Footer from "../../common/Footer/footer";
 import CustomCard from "../../common/CustomCard/CustomCard";
 import { useEffect } from "react";
 import ticket from "../../assets/tickets.jpeg";
-
+import music from "../../assets/browse_events/music.jpeg";
+import sports from "../../assets/browse_events/sports.jpeg";
+import health from "../../assets/browse_events/health.jpeg";
+import business from "../../assets/browse_events/business.jpeg";
+import hobbies from "../../assets/browse_events/hobbies.jpeg";
+import food from "../../assets/browse_events/food.jpeg";
 
 const BrowseEvents = () => {
   // Sample data for categories
@@ -16,42 +21,42 @@ const BrowseEvents = () => {
       id: 1,
       title: "Music",
       description: "Concerts, festivals, and more",
-      image: {  },
+      image: music,
       link: "/categories/music_concert",
     },
     {
       id: 2,
       title: "Sports",
       description: "Matches, competitions, and more",
-      image: {  },
+      image: sports,
       link: "/categories/sports",
     },
     {
       id: 3,
       title: "Health",
       description: "Competitions for fitness enthusiasts.",
-      image: {  },
+      image: health,
       link: "/categories/health",
     },
     {
       id: 4,
       title: "Business",
       description: "Stay updated on business trends",
-      image: {  },
+      image: business,
       link: "/categories/business",
     },
     {
       id: 5,
       title: "Hobbies",
       description: "Discover new hobbies and attend fun events",
-      image: {  },
+      image: hobbies,
       link: "/categories/hobbies",
     },
     {
       id: 6,
       title: "Food",
       description: "Experience delicious cuisine",
-      image: {  },
+      image: food,
       link: "/categories/Food",
     },
     // Add more categories as needed
@@ -82,7 +87,7 @@ const BrowseEvents = () => {
           </Col>
         </Row>
         <Row>
-          {categories.map((category,idx) => (
+          {categories.map((category, idx) => (
             <Col xs={12} md={6} lg={4} key={category.id} className="mb-4">
               <CustomCard category={category} idx={idx} />
             </Col>

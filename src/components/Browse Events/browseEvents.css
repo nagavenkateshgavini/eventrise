@@ -3,12 +3,12 @@
 }
 
 .events {
-  background-image: linear-gradient(
-    150deg,
-    rgb(45, 36, 36) 0%,
-    rgba(255, 165, 0, 1) 10%,
-    rgb(74, 72, 72) 100%
-  ) !important;
+  background: #56ccf2; /* fallback for old browsers */
+  background: linear-gradient(
+    135 deg,
+    #ffffff,
+    #56ccf2
+  ) !important; /* Chrome 10-25, Safari 5.1-6 */
 }
 
 .card-container {
@@ -20,7 +20,6 @@
   transform-style: preserve-3d;
   transition: all 0.5s ease;
 }
-
 
 .card-container:hover .card {
   transform: rotateY(-10deg) rotateX(-10deg) scale(1.05);
