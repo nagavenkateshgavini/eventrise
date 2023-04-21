@@ -10,6 +10,8 @@ import UserContext from "../../UserContext";
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import moment from 'moment';
+import { v4 as uuidv4 } from 'uuid';
+import { Checkbox } from 'semantic-ui-react';
 
 export default function EventForm() {
 
@@ -50,6 +52,8 @@ export default function EventForm() {
     const send = (form) => {
         const url = `${process.env.REACT_APP_BASE_URL}createEvent`
         form['hosted_by'] = userId
+        form['event_id'] = uuidv4()
+        // delete form['event_file']
         console.log(url, form)
 
         try{
@@ -84,6 +88,11 @@ export default function EventForm() {
             setField('event_date', '')
         }
       }
+
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        setField('event_file', file)
+    };
 
   return (
     <>
@@ -175,7 +184,13 @@ export default function EventForm() {
                             </Form.Control.Feedback>
                         </Form.Group>
 
-                        <br/>
+                        {/* <Form.Group controlId="formFile" className="mb-3">
+                            <Form.Label className='fw-bold fs-5'>Select an event banner:(Optional)</Form.Label>
+                            <Form.Control type="file" accept="image/*" onChange={handleFileChange} />
+                        </Form.Group> */}
+
+                        <p><Checkbox checked></Checkbox> By Clicking Continue, you are agreeing the terms and conditions</p>
+
                         <Form.Group controlId="submit">
                             <Button type="submit" onClick={handleSubmit} className='my-2' variant='primary'>
                                 Continue
