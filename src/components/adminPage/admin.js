@@ -22,6 +22,20 @@ export default function Admin() {
         setEvents(result.data)
     }
 
+    const sendEmail = async (event_id) => {
+        console.log("sending email to event creator")
+        const url = `${process.env.REACT_APP_BASE_URL}api/sendEventStatus`
+        console.log(event_id)
+        const data = {"event_id": event_id}
+        try{
+            let res = await Axios.post(url, data)
+            console.log(res)
+        }
+        catch(e) {
+            console.log("Issue with the send email API call", e)
+        }
+    }
+
     const editEvent = async (event_id) => {
         console.log("approve event called")
         const url = `${process.env.REACT_APP_BASE_URL}updateEvent`
@@ -37,6 +51,8 @@ export default function Admin() {
         catch(e) {
             console.log("Issue with the approve event callstart", e)
         }
+
+        sendEmail(event_id)
     }
 
     const deleteEvent = async (event_id) => {
@@ -83,7 +99,7 @@ export default function Admin() {
                                 <td>{event.status}</td>
                                 <td>
 
-                                <Link className="btn btn-primary" to={`/events/${event.event_id}`}>
+                                <Link className="btn btn-primary" to={`/event/${event.event_id}`}>
                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                 </Link>
 
