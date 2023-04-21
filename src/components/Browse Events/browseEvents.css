@@ -11,3 +11,18 @@
   ) !important;
 }
 
+.card-container {
+  perspective: 1500px;
+  transition: all 0.5s ease;
+}
+
+.card {
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+}
+
+
+.card-container:hover .card {
+  transform: rotateY(-10deg) rotateX(-10deg) scale(1.05);
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+}

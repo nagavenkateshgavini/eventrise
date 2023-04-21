@@ -1,37 +1,22 @@
 import React from "react";
-import { Container, Row, Col, Card, Carousel } from "react-bootstrap";
+import { Container, Row, Col, Carousel } from "react-bootstrap";
 import "./browseEvents.css";
 import FAQSection from "../../common/accordian";
 import Footer from "../../common/Footer/footer";
-import { Link } from "react-router-dom";
+import CustomCard from "../../common/CustomCard/CustomCard";
+import { useEffect } from "react";
 
-const CategoryCard = ({ category }) => (
-  <Link
-    to={category.link}
-    style={{
-      textDecoration: "none",
-      color: "black",
-    }}
-  >
-    <Card className="shadow-sm cursor-pointer">
-      <Card.Img variant="top" src={category.image} />
-      <Card.Body>
-        <Card.Title>{category.title}</Card.Title>
-        <Card.Text>{category.description}</Card.Text>
-      </Card.Body>
-    </Card>
-  </Link>
-);
 
 const BrowseEvents = () => {
   // Sample data for categories
+  useEffect(() => {}, []);
   const categories = [
     {
       id: 1,
       title: "Music",
       description: "Concerts, festivals, and more",
       image: "https://via.placeholder.com/150",
-      link: "/categories/music",
+      link: "/categories/music_concert",
     },
     {
       id: 2,
@@ -41,32 +26,32 @@ const BrowseEvents = () => {
       link: "/categories/sports",
     },
     {
-      id: 2,
-      title: "Technical",
-      description: "Matches, competitions, and more",
+      id: 3,
+      title: "Health",
+      description: "Competitions for fitness enthusiasts.",
       image: "https://via.placeholder.com/150",
-      link: "/categories/technical",
+      link: "/categories/health",
     },
     {
-      id: 2,
-      title: "Technical",
-      description: "Matches, competitions, and more",
+      id: 4,
+      title: "Business",
+      description: "Stay updated on business trends",
       image: "https://via.placeholder.com/150",
-      link: "/categories/technical",
+      link: "/categories/business",
     },
     {
-      id: 2,
-      title: "Technical",
-      description: "Matches, competitions, and more",
+      id: 5,
+      title: "Hobbies",
+      description: "Discover new hobbies and attend fun events",
       image: "https://via.placeholder.com/150",
-      link: "/categories/technical",
+      link: "/categories/hobbies",
     },
     {
-      id: 2,
-      title: "Technical",
-      description: "Matches, competitions, and more",
+      id: 6,
+      title: "Food",
+      description: "Experience delicious cuisine",
       image: "https://via.placeholder.com/150",
-      link: "/categories/technical",
+      link: "/categories/Food",
     },
     // Add more categories as needed
   ];
@@ -107,7 +92,7 @@ const BrowseEvents = () => {
         <Row>
           {categories.map((category) => (
             <Col xs={12} md={6} lg={4} key={category.id} className="mb-4">
-              <CategoryCard category={category} />
+              <CustomCard category={category} />
             </Col>
           ))}
         </Row>

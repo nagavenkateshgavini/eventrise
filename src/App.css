@@ -2,14 +2,14 @@ body {
   background-color: #181823;
 }
 
-.container-box {
+/* .container-box {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   justify-content: space-between;
-}
+} */
 
 /* .container-box > * {
   flex-shrink: 0;

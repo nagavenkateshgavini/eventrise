@@ -5,16 +5,16 @@
   --dark-terminal-color: #0A2540;
   --accent-color: #635BFF;
   --radius: 3px;
-}
+} 
 
-body {
+/* body {
   padding: 20px;
   font-family: 'Raleway';
   display: flex;
   justify-content: center;
   font-size: 1.2em;
   color: var(--dark-terminal-color);
-}
+} */
 
 main {
   width: 480px;
@@ -65,7 +65,7 @@ label {
 
 a {
   color: var(--accent-color);
-  font-weight: 900;
+  /* font-weight: 900; */
 }
 
 small {

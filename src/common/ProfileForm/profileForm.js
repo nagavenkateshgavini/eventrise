@@ -105,7 +105,9 @@ function ProfileForm({ userData }) {
               placeholder="State"
               name="state"
               value={formData.state}
-              onChange={handleChange}
+              onChange={(e, { name, value }) => {
+                handleChange({ target: { name, value } });
+              }}
               error={errors.state && { content: errors.state }}
               fluid
               selection
