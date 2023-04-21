@@ -4,7 +4,7 @@ function FAQSection() {
   return (
     <section className="faq-section mb-5 py-5">
       <div className="row">
-        <div className="col-10 col-sm-10 col-lg-10 mx-auto">
+        <div className="col">
           <Accordion>
             <Accordion.Item eventKey="0">
               <Accordion.Header>
@@ -26,7 +26,7 @@ function FAQSection() {
                 playing defense, assuming their offense will cover for them.
               </Accordion.Body>
             </Accordion.Item>
-            <Accordion.Item eventKey="1">
+            <Accordion.Item eventKey="2">
               <Accordion.Header>
                 How to make payments from this site?
               </Accordion.Header>
