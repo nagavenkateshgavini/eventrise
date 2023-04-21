@@ -128,17 +128,17 @@ function Login() {
               <Grid>
                 <Grid.Row columns={2} centered>
                   <Grid.Column>
+                    <Button color="linkedin" onClick={getUserDetails}>
+                      Login
+                      <Icon name="long arrow alternate right" />{" "}
+                    </Button>
+                  </Grid.Column>
+                  <Grid.Column>
                     <Link to="/userRegistration">
                       <Button color="linkedin">
                         SignUp <Icon className="ms-2" name="signup" />
                       </Button>
                     </Link>
-                  </Grid.Column>
-                  <Grid.Column>
-                    <Button color="linkedin" onClick={getUserDetails}>
-                      Login
-                      <Icon name="long arrow alternate right" />{" "}
-                    </Button>
                   </Grid.Column>
                 </Grid.Row>
               </Grid>

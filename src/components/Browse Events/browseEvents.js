@@ -5,6 +5,7 @@ import FAQSection from "../../common/accordian";
 import Footer from "../../common/Footer/footer";
 import CustomCard from "../../common/CustomCard/CustomCard";
 import { useEffect } from "react";
+import ticket from "../../assets/tickets.jpeg";
 
 
 const BrowseEvents = () => {
@@ -15,42 +16,42 @@ const BrowseEvents = () => {
       id: 1,
       title: "Music",
       description: "Concerts, festivals, and more",
-      image: "https://via.placeholder.com/150",
+      image: {  },
       link: "/categories/music_concert",
     },
     {
       id: 2,
       title: "Sports",
       description: "Matches, competitions, and more",
-      image: "https://via.placeholder.com/150",
+      image: {  },
       link: "/categories/sports",
     },
     {
       id: 3,
       title: "Health",
       description: "Competitions for fitness enthusiasts.",
-      image: "https://via.placeholder.com/150",
+      image: {  },
       link: "/categories/health",
     },
     {
       id: 4,
       title: "Business",
       description: "Stay updated on business trends",
-      image: "https://via.placeholder.com/150",
+      image: {  },
       link: "/categories/business",
     },
     {
       id: 5,
       title: "Hobbies",
       description: "Discover new hobbies and attend fun events",
-      image: "https://via.placeholder.com/150",
+      image: {  },
       link: "/categories/hobbies",
     },
     {
       id: 6,
       title: "Food",
       description: "Experience delicious cuisine",
-      image: "https://via.placeholder.com/150",
+      image: {  },
       link: "/categories/Food",
     },
     // Add more categories as needed
@@ -66,17 +67,8 @@ const BrowseEvents = () => {
             <Carousel className="my-2">
               {/* Add your highlight images and captions here */}
               <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src="https://via.placeholder.com/800x400"
-                  alt="First slide"
-                />
-                <Carousel.Caption>
-                  <h3>First slide label</h3>
-                  <p>
-                    Nulla vitae elit libero, a pharetra augue mollis interdum.
-                  </p>
-                </Carousel.Caption>
+                <img className="d-block w-100" src={ticket} alt="First slide" />
+                <Carousel.Caption></Carousel.Caption>
               </Carousel.Item>
               {/* Add more Carousel items as needed */}
             </Carousel>
@@ -90,9 +82,9 @@ const BrowseEvents = () => {
           </Col>
         </Row>
         <Row>
-          {categories.map((category) => (
+          {categories.map((category,idx) => (
             <Col xs={12} md={6} lg={4} key={category.id} className="mb-4">
-              <CustomCard category={category} />
+              <CustomCard category={category} idx={idx} />
             </Col>
           ))}
         </Row>

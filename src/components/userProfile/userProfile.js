@@ -6,7 +6,7 @@ import ProfileForm from "../../common/ProfileForm/profileForm";
 import axios from "axios";
 import "./userProfile.css";
 import EventCards from "../ProfileEventCards/ProfileEventCards";
-import HostedEvents from "../HostedEvents/hostedEvents";
+import EventAnalytics from "../EventAnalytics/EventAnalytics";
 import Footer from "../../common/Footer/footer";
 import UserContext from "../../UserContext";
 
@@ -16,12 +16,16 @@ const UserProfile = () => {
   const [showUserDetails, setUserDetails] = useState(true);
   const [showAttendedEvents, setAttendedEvents] = useState(false);
   const [showUpcomingEvents, setUpcomingEvents] = useState(false);
-  const [showAnalytics, setAnalytics] = useState(false);
+  const [showAnalyticsbool, setAnalytics] = useState(false);
+  const [showPending, setPending] = useState(false);
+  const [showHosted, setHosted] = useState(false);
   const showUserDetailsbool = () => {
     setUserDetails(true);
     setAttendedEvents(false);
     setUpcomingEvents(false);
     setAnalytics(false);
+    setPending(false);
+    setHosted(false);
   };
 
   const showAttendedbool = () => {
@@ -36,13 +40,35 @@ const UserProfile = () => {
     setAttendedEvents(false);
     setUpcomingEvents(true);
     setAnalytics(false);
+    setPending(false);
+    setHosted(false);
   };
 
-  const showHosted = () => {
+  const showAnalytics = () => {
     setUserDetails(false);
     setAttendedEvents(false);
     setUpcomingEvents(false);
     setAnalytics(true);
+    setPending(false);
+    setHosted(false);
+  };
+
+  const showPendingEvents = () => {
+    setUserDetails(false);
+    setAttendedEvents(false);
+    setUpcomingEvents(false);
+    setAnalytics(false);
+    setPending(true);
+    setHosted(false);
+  };
+
+  const showHostedEvents = () => {
+    setUserDetails(false);
+    setAttendedEvents(false);
+    setUpcomingEvents(false);
+    setAnalytics(false);
+    setPending(false);
+    setHosted(true);
   };
 
   useEffect(() => {
@@ -68,10 +94,10 @@ const UserProfile = () => {
       isMounted = false;
     };
   }, [email]);
-  const arr = [1, 2, 3, 4, 5];
+
   return (
     <div>
-      <Row className="mt-2">
+      <Row className="mt-2" style={{ height: "100vh" }}>
         <Col xs={12} md={3} style={{ backgroundColor: "#f8f7fa" }}>
           <ListGroup
             variant="flush"
@@ -82,7 +108,7 @@ const UserProfile = () => {
               className="cursor-pointer"
               onClick={showUserDetailsbool}
             >
-              User Details
+              User Details....................
             </ListGroup.Item>
             <ListGroup.Item
               className="cursor-pointer"
@@ -96,11 +122,20 @@ const UserProfile = () => {
             >
               Upcoming Events
             </ListGroup.Item>
-            <ListGroup.Item className="cursor-pointer" onClick={showHosted}>
+            <ListGroup.Item className="cursor-pointer" onClick={showAnalytics}>
               Events Analytics
             </ListGroup.Item>
-            <ListGroup.Item className="cursor-pointer" onClick={showHosted}>
+            <ListGroup.Item
+              className="cursor-pointer"
+              onClick={showPendingEvents}
+            >
               Pending events
+            </ListGroup.Item>
+            <ListGroup.Item
+              className="cursor-pointer"
+              onClick={showHostedEvents}
+            >
+              Hosted events
             </ListGroup.Item>
           </ListGroup>
         </Col>
@@ -123,22 +158,32 @@ const UserProfile = () => {
           {showAttendedEvents && (
             <Segment className="m-3">
               <div className="display-5 mb-2">Attended Events</div>
-              {arr.map((e) => (
-                <EventCards />
-              ))}
+              <EventCards type={"attendedEvents"} />
             </Segment>
           )}
 
           {showUpcomingEvents && (
             <Segment className="m-3">
               <div className="display-5 mb-2">Upcoming Events</div>
-              {arr.map((e) => (
-                <EventCards />
-              ))}
+              <EventCards type={"upcomingEventsByUserId"} />
             </Segment>
           )}
 
-          {showAnalytics && <HostedEvents />}
+          {showAnalyticsbool && <EventAnalytics />}
+
+          {showPending && (
+            <Segment className="m-3">
+              <div className="display-5 mb-2">Pending Events for Approval</div>
+              <EventCards type={"Pending"} />
+            </Segment>
+          )}
+
+          {showHosted && (
+            <Segment className="m-3">
+              <div className="display-5 mb-2">Hosted Events</div>
+              <EventCards type={"hostedEvents"} />
+            </Segment>
+          )}
         </Col>
       </Row>
       <Footer />

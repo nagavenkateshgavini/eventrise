@@ -61,10 +61,10 @@ const PaymentEntry = () => {
 
   const handleButton2Click = async () => {
     const ticketData = {
-      userID: 1,
-      eventID: 1,
-      paymentType: "cards",
-      createdTime: new Date(),
+      user_id: 1,
+      event_id: 1,
+      payment_type: "cards",
+      created_time: new Date(),
     };
 
     try {

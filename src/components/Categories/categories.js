@@ -49,6 +49,14 @@ function Categories() {
             <Card.Body>
               <Card.Title>{event.title}</Card.Title>
               <Card.Text>
+                <small className="text-muted">Date: {event.event_date}</small>
+              </Card.Text>
+              <Card.Text>
+                <small className="text-muted">
+                  Price: ${event.ticket_price}
+                </small>
+              </Card.Text>
+              <Card.Text>
                 {isExpanded
                   ? event.description
                   : truncateDescription(event.description)}
@@ -59,9 +67,6 @@ function Categories() {
                 >
                   {isExpanded ? " Read less" : " Read more"}
                 </span>
-              </Card.Text>
-              <Card.Text>
-                <small className="text-muted">{event.date}</small>
               </Card.Text>
             </Card.Body>
           </Card>
@@ -104,7 +109,6 @@ function Categories() {
       </Container>
     );
   };
-
 
   return (
     <div>

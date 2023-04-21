@@ -71,7 +71,7 @@ export const Linedata = {
   ],
 };
 
-function HostedEvents() {
+function EventAnalytics() {
   // const chartOptions = {
   //   maintainAspectRatio: false,
   //   plugins: {
@@ -164,4 +164,4 @@ function HostedEvents() {
   );
 }
 
-export default HostedEvents;
+export default EventAnalytics;
