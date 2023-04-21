@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Container, Card, Form, Button } from "react-bootstrap";
 import "./styles.css";
 
 const Registration = () => {
   //const [numTickets, setNumTickets] = useState(0);
+  const location = useLocation();
+  const { eventId, ticket_price } = location.state;
+  console.log(eventId, ticket_price);
   const [agreement, setAgreement] = useState(false);
   const navigate = useNavigate();
 
