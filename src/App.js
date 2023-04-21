@@ -32,14 +32,14 @@ function App() {
       <Header />
       <div style={{ marginTop: "70px" }}>
         <Routes>
-          <Route
+          {/* <Route
             path="/"
             element={
               <ProtectedRoute>
                 <Home />
               </ProtectedRoute>
             }
-          />
+          /> */}
           <Route
             path="/create"
             element={
@@ -106,7 +106,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/browse" element={<BrowseEvents />} />
+          <Route path="/" element={<BrowseEvents />} />
           <Route path="/categories/:categoryName" element={<Categories />} />
           <Route path="/event/:eventId" element={<EventDetails />} />
           <Route path="*" element={<NotFound />} />

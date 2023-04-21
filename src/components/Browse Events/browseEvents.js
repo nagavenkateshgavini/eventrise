@@ -68,7 +68,7 @@ const BrowseEvents = () => {
         {/* Highlights */}
         <Row className="my-4">
           <Col>
-            <h2>Highlights</h2>
+            <h2 className="mb-2">Highlights</h2>
             <Carousel className="my-2">
               {/* Add your highlight images and captions here */}
               <Carousel.Item>
