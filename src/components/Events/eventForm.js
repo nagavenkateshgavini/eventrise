@@ -19,6 +19,7 @@ export default function EventForm() {
     const [form, setForm] = useState({})
     const [errors, setErrors] = useState({})
     const { username, email, userId } = useContext(UserContext);
+    const [selectedFile, setSelectedFile] = useState(null);
 
     const setField = (field, value) => {
         setForm({
@@ -36,7 +37,7 @@ export default function EventForm() {
 
     const validateForm = () => {
         console.log("validation called")
-        const { title, event_date, description, ticket_price, location, event_category } = form
+        const { title, event_date, description, ticket_price, location, event_category, file_selected } = form
         const newErrors = {}
 
         if(!event_date || event_date === '') newErrors.event_date = "Please enter date"
@@ -50,19 +51,27 @@ export default function EventForm() {
     }
 
     const send = (form) => {
-        const url = `${process.env.REACT_APP_BASE_URL}createEvent`
-        form['hosted_by'] = userId
-        form['event_id'] = uuidv4()
-        // delete form['event_file']
-        console.log(url, form)
-
-        try{
-            Axios.post(url, form)
+        const url = `${process.env.REACT_APP_BASE_URL}createEvent`;
+        form['hosted_by'] = userId;
+        form['event_id'] = uuidv4();
+        console.log(url, form);
+        const formData = new FormData();
+        formData.append('image', selectedFile);
+        for (const key in form) {
+            if (Object.hasOwnProperty.call(form, key)) {
+                formData.append(key, form[key]);
+            }
         }
-        catch(e){
-            console.log(e)
+        try {
+            Axios.post(url, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+        } catch (e) {
+            console.log(e);
         }
-    }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -90,8 +99,13 @@ export default function EventForm() {
       }
 
     const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        setField('event_file', file)
+        setSelectedFile(event.target.files[0]);
+        if (!!selectedFile) {
+            setField("file_selected", "Please select a file");
+        }
+        else{
+            setField("file_selected", null);
+        }
     };
 
   return (
@@ -103,7 +117,7 @@ export default function EventForm() {
                     <br />
                     <Form>
                         <Form.Group className="mb-3" controlId="eventForm.title">
-                            <Form.Label className='fw-bold fs-5'>Event Title</Form.Label>
+                            <Form.Label className='fw-bold fs-5'>Event Title <span style={{color: "red"}}>*</span></Form.Label>
                             <Form.Control type="text" placeholder="Event title"
                             value={form.title}
                             onChange={(e) => setField('title', e.target.value)}
@@ -115,7 +129,7 @@ export default function EventForm() {
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="eventForm.description">
-                            <Form.Label className='fw-bold fs-5'>Description</Form.Label>
+                            <Form.Label className='fw-bold fs-5'>Description <span style={{color: "red"}}>*</span></Form.Label>
                             <Form.Control as="textarea" rows={6} 
                             value={form.description}
                             onChange={(e) => setField('description', e.target.value)}
@@ -127,7 +141,7 @@ export default function EventForm() {
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="eventForm.eventAddress">
-                            <Form.Label className='fw-bold fs-5'>Event Location</Form.Label>
+                            <Form.Label className='fw-bold fs-5'>Event Location <span style={{color: "red"}}>*</span></Form.Label>
                             <Form.Control as="textarea" rows={2}
                             value={form.location}
                             onChange={(e) => setField('location', e.target.value)}
@@ -138,20 +152,20 @@ export default function EventForm() {
                             </Form.Control.Feedback>  
                         </Form.Group>
 
-                        <Form.Group as={Col} md="4" className="mb-3" controlId="eventForm.event_time">
-                            <Form.Label className='fw-bold fs-5'>Event Time</Form.Label>
+                        <Form.Group as={Col} md="4" className="mb-3" controlId="eventForm.event_date">
+                            <Form.Label className='fw-bold fs-5'>Event Time <span style={{color: "red"}}>*</span></Form.Label>
                                 <Datetime
                                     onChange={handleDateChange}
                                     inputProps={{ placeholder: 'Select date and time' }}
-                                    isInvalid={!!errors.event_time}
+                                    isInvalid={!!errors.event_date}
+                                    minDate={new Date()}
+                                    value={form.event_date}
                                 />
-                            <p>{errors.event_time}</p>
+                            <p style={{color: "red"}}>{errors.event_date}</p>
                         </Form.Group>
 
-                        <br />
-
                         <InputGroup as={Col} md="3" className="mb-3" controlId="eventForm.ticket_price">
-                            <InputGroup.Text>Event Price in $</InputGroup.Text>
+                            <InputGroup.Text>Event Price in $ <span style={{color: "red"}}>*</span></InputGroup.Text>
                             <Form.Control aria-label="Amount (to the nearest dollar)"
                             value={form.ticket_price}
                             onChange={(e) => setField('ticket_price', e.target.value)}
@@ -164,7 +178,7 @@ export default function EventForm() {
                         </InputGroup>
                         
                         <Form.Group controlId="eventForm.event_category">
-                            <Form.Label className='fw-bold fs-5'>Event category</Form.Label>
+                            <Form.Label className='fw-bold fs-5'>Event category <span style={{color: "red"}}>*</span></Form.Label>
 
                             <Form.Select placeholder='Select Event category'
                             value={form.event_category}
@@ -184,10 +198,11 @@ export default function EventForm() {
                             </Form.Control.Feedback>
                         </Form.Group>
 
-                        {/* <Form.Group controlId="formFile" className="mb-3">
-                            <Form.Label className='fw-bold fs-5'>Select an event banner:(Optional)</Form.Label>
-                            <Form.Control type="file" accept="image/*" onChange={handleFileChange} />
-                        </Form.Group> */}
+                        <Form.Group controlId="formFile" className="mb-3">
+                            <Form.Label className='fw-bold fs-5'>Select an event banner: <span style={{color: "red"}}>*</span></Form.Label>
+                            <Form.Control type="file" accept="image/png, image/jpg, image/jpeg" onChange={handleFileChange}/>
+                        </Form.Group>
+                        {form.file_selected && <div className="text-danger">{form.file_selected}</div>}
 
                         <p><Checkbox checked></Checkbox> By Clicking Continue, you are agreeing the terms and conditions</p>
 
