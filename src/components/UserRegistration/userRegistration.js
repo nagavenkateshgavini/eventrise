@@ -85,12 +85,14 @@ const UserRegistration = () => {
   };
 
   const handleSubmit = (e) => {
+    console.log("entering");
     e.preventDefault();
     let newErrors = validations(formData);
-    if (Object.keys(newErrors).length > 0) {
+    console.log("entering", newErrors);
+    if (Object.keys(newErrors).length > 1) {
       setErrors(newErrors);
     } else {
-      console.log(formData, `${process.env.REACT_APP_BASE_URL}createUser`)
+      console.log(formData, `${process.env.REACT_APP_BASE_URL}createUser`);
       axios
         .post(`${process.env.REACT_APP_BASE_URL}createUser`, formData)
         .then((res) => {
@@ -379,7 +381,7 @@ const UserRegistration = () => {
                           name="state"
                           value={formData.state}
                           onChange={(e, { name, value }) =>
-                          handleChange({ target: { name, value } })
+                            handleChange({ target: { name, value } })
                           }
                           error={errors.state && { content: errors.state }}
                           fluid
@@ -436,7 +438,7 @@ const UserRegistration = () => {
                           value={"United States"}
                           onChange={handleChange}
                           style={{ width: isMobile ? "100%" : "50%" }}
-                          error={errors.country && { content: errors.country }}
+                          //error={errors.country && { content: errors.country }}
                         />
                       </Grid.Column>
                     </Grid>

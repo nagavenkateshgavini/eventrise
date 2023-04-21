@@ -46,7 +46,7 @@ function Login() {
       .then((res) => {
         if (res.status === 200) {
           console.log("res", res.data);
-          sessionStorage.setItem("auth", true);
+          sessionStorage.setItem("token", res.data.token);
           setUser({
             isAuthenticated: true,
             username: res.data.name,
@@ -64,19 +64,20 @@ function Login() {
 
   const googleAuth = () => {
     console.log("I'm entering...google Auth");
-    axios
-      .get(`${process.env.REACT_APP_BASE_URL}auth/google`, {
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-      })
-      .then((response) => {
-        console.log("data", response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    window.open(`${process.env.REACT_APP_BASE_URL}auth/google`);
+    // axios
+    //   .get(`${process.env.REACT_APP_BASE_URL}auth/google`, {
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       "Access-Control-Allow-Origin": "*",
+    //     },
+    //   })
+    //   .then((response) => {
+    //     console.log("data", response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
   };
   return (
     <div

@@ -1,13 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
 import UserContext from "../../UserContext";
-import { HashLink } from "react-router-hash-link";
 import {
   Navbar,
   Container,
-  Form,
   Nav,
-  NavDropdown,
-  Button,
   Image,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -29,7 +25,7 @@ const Header = () => {
     };
   }, []);
   const { username, setUser } = useContext(UserContext);
-  const isAuthenticated = sessionStorage.getItem("auth");
+  const isAuthenticated = sessionStorage.getItem("token");
   const navigate = useNavigate();
   return (
     <Navbar
@@ -53,10 +49,13 @@ const Header = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="justify-content-end flex-grow-1 pe-3">
             <Link className="link" to="/browse">
-              Features
+              Browse
             </Link>
-            <NavDropdown
-              title={<span className="menu-title">Categories</span>}
+            <Link className="link" to="/create">
+              create Event
+            </Link>
+            {/* <NavDropdown
+              title={<span className="menu-title">Features</span>}
               id="collasible-nav-dropdown"
               color="warning"
               className="nav-dropdown mt-1"
@@ -74,18 +73,7 @@ const Header = () => {
               <NavDropdown.Item as={HashLink} smooth to="#action/3.1">
                 Separated link
               </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-          <Nav>
-            <Form className="d-flex">
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button variant="outline-success">Search</Button>
-            </Form>
+            </NavDropdown> */}
           </Nav>
           {isAuthenticated && (
             <Link
