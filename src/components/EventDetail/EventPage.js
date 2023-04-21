@@ -15,6 +15,7 @@ import img1 from "../../assets/tickets.jpeg";
 import Footer from "../../common/Footer/footer";
 import axios from "axios";
 import "./EventPage.css";
+import { Link } from "react-router-dom";
 
 const EventDetails = () => {
   const eventId = useParams().eventId;
@@ -33,7 +34,7 @@ const EventDetails = () => {
       </Loader>
     );
   }
-  const { title, description, event_date, location, status } = event;
+  const { title, description, event_date, location, status,ticket_price } = event;
   return (
     <div>
       <Container fluid className="m-4">
@@ -74,6 +75,15 @@ const EventDetails = () => {
                 </Grid>
                 <Grid>
                   <Grid.Column mobile={8} computer={4}>
+                    <strong>Price:</strong>
+                  </Grid.Column>
+                  <Grid.Column mobile={8} computer={12}>
+                    <Icon name="money bill alternate" />
+                    {ticket_price}
+                  </Grid.Column>
+                </Grid>
+                <Grid>
+                  <Grid.Column mobile={8} computer={4}>
                     <strong>Status:</strong>
                   </Grid.Column>
                   <Grid.Column mobile={8} computer={12}>
@@ -91,7 +101,15 @@ const EventDetails = () => {
                   {description}
                 </Segment>
                 <div style={{ textAlign: "center" }}>
-                  <Button color="green">Attend Event</Button>
+                  <Link
+                    to={{
+                      pathname: "/eventRegister",
+                      state: { eventId, ticket_price },
+                    }}
+                  >
+                    {" "}
+                    <Button color="green">Attend Event</Button>
+                  </Link>
                 </div>
               </Segment>
             </Grid.Column>
