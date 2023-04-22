@@ -53,7 +53,7 @@ function Login() {
             email: res.data.email,
             userId: res.data.userId,
           });
-          navigate("/browse");
+          navigate("/");
         }
       })
       .catch((error) => {

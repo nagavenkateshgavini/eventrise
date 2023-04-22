@@ -5,7 +5,9 @@ import FAQSection from "../../common/accordian";
 import Footer from "../../common/Footer/footer";
 import CustomCard from "../../common/CustomCard/CustomCard";
 import { useEffect } from "react";
-import ticket from "../../assets/tickets.jpeg";
+import outside from "../../assets/carousal1.jpeg";
+import community from "../../assets/community.jpeg";
+import marathons from "../../assets/marathons.jpeg";
 import music from "../../assets/browse_events/music.jpeg";
 import sports from "../../assets/browse_events/sports.jpeg";
 import health from "../../assets/browse_events/health.jpeg";
@@ -62,6 +64,27 @@ const BrowseEvents = () => {
     // Add more categories as needed
   ];
 
+  const slides = [
+    {
+      text: 'Host your dream event !',
+      imgSrc: outside,
+      altText: 'Image 1 Alt Text',
+      color: '#ff0000'
+    },
+    {
+      text: 'Where events come to life',
+      imgSrc: community,
+      altText: 'Image 2 Alt Text',
+      color: '#00ff00'
+    },
+    {
+      text: 'Create memories 🎉',
+      imgSrc: marathons,
+      altText: 'Image 3 Alt Text ',
+      color: '#0000ff'
+    }
+  ];
+
   return (
     <div className="events">
       <Container>
@@ -69,13 +92,19 @@ const BrowseEvents = () => {
         <Row className="my-4">
           <Col>
             <h2 className="mb-2">Highlights</h2>
-            <Carousel className="my-2">
-              {/* Add your highlight images and captions here */}
-              <Carousel.Item>
-                <img className="d-block w-100" src={ticket} alt="First slide" />
-                <Carousel.Caption></Carousel.Caption>
-              </Carousel.Item>
-              {/* Add more Carousel items as needed */}
+            <Carousel>
+              {slides.map((slide, index) => (
+                <Carousel.Item key={index} style={{ backgroundColor: slide.color }}>
+                  <div className="carousel-overlay">
+                      <h1 className="carousel-text">{slide.text}</h1>
+                  </div>
+                  <img
+                    className="d-block w-100 rounded"
+                    src={slide.imgSrc}
+                    alt={slide.altText}
+                  />
+                </Carousel.Item>
+              ))}
             </Carousel>
           </Col>
         </Row>

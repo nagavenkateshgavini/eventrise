@@ -37,7 +37,7 @@ export default function EventForm() {
 
     const validateForm = () => {
         console.log("validation called")
-        const { title, event_date, description, ticket_price, location, event_category, file_selected } = form
+        const { title, event_date, description, ticket_price, location, event_category } = form
         const newErrors = {}
 
         if(!event_date || event_date === '') newErrors.event_date = "Please enter date"
@@ -113,11 +113,11 @@ export default function EventForm() {
         <FormContainer>
             <Row className='justify-content-center'>
                 <Col xs={12} md={6}>
-                    <h1>Please add the event details in the form</h1>
+                    <h1 className='mt-5'>Please add the event details in the form</h1>
                     <br />
                     <Form>
                         <Form.Group className="mb-3" controlId="eventForm.title">
-                            <Form.Label className='fw-bold fs-5'>Event Title <span style={{color: "red"}}>*</span></Form.Label>
+                            <Form.Label className='fw-bold fs-5 text-dark'>Event Title <span style={{color: "red"}}>*</span></Form.Label>
                             <Form.Control type="text" placeholder="Event title"
                             value={form.title}
                             onChange={(e) => setField('title', e.target.value)}
@@ -129,7 +129,7 @@ export default function EventForm() {
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="eventForm.description">
-                            <Form.Label className='fw-bold fs-5'>Description <span style={{color: "red"}}>*</span></Form.Label>
+                            <Form.Label className='fw-bold fs-5 text-dark'>Description <span style={{color: "red"}}>*</span></Form.Label>
                             <Form.Control as="textarea" rows={6} 
                             value={form.description}
                             onChange={(e) => setField('description', e.target.value)}
@@ -141,7 +141,7 @@ export default function EventForm() {
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="eventForm.eventAddress">
-                            <Form.Label className='fw-bold fs-5'>Event Location <span style={{color: "red"}}>*</span></Form.Label>
+                            <Form.Label className='fw-bold fs-5 text-dark'>Event Location <span style={{color: "red"}}>*</span></Form.Label>
                             <Form.Control as="textarea" rows={2}
                             value={form.location}
                             onChange={(e) => setField('location', e.target.value)}
@@ -153,7 +153,7 @@ export default function EventForm() {
                         </Form.Group>
 
                         <Form.Group as={Col} md="4" className="mb-3" controlId="eventForm.event_date">
-                            <Form.Label className='fw-bold fs-5'>Event Time <span style={{color: "red"}}>*</span></Form.Label>
+                            <Form.Label className='fw-bold fs-5 text-dark'>Event Time <span style={{color: "red"}}>*</span></Form.Label>
                                 <Datetime
                                     onChange={handleDateChange}
                                     inputProps={{ placeholder: 'Select date and time' }}
@@ -178,7 +178,7 @@ export default function EventForm() {
                         </InputGroup>
                         
                         <Form.Group controlId="eventForm.event_category">
-                            <Form.Label className='fw-bold fs-5'>Event category <span style={{color: "red"}}>*</span></Form.Label>
+                            <Form.Label className='fw-bold fs-5 text-dark'>Event category <span style={{color: "red"}}>*</span></Form.Label>
 
                             <Form.Select placeholder='Select Event category'
                             value={form.event_category}
@@ -199,7 +199,7 @@ export default function EventForm() {
                         </Form.Group>
 
                         <Form.Group controlId="formFile" className="mb-3">
-                            <Form.Label className='fw-bold fs-5'>Select an event banner: <span style={{color: "red"}}>*</span></Form.Label>
+                            <Form.Label className='fw-bold fs-5 text-dark'>Select an event banner: <span style={{color: "red"}}>*</span></Form.Label>
                             <Form.Control type="file" accept="image/png, image/jpg, image/jpeg" onChange={handleFileChange}/>
                         </Form.Group>
                         {form.file_selected && <div className="text-danger">{form.file_selected}</div>}
