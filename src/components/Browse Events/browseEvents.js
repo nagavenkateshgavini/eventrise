@@ -24,7 +24,7 @@ const BrowseEvents = () => {
       title: "Music",
       description: "Concerts, festivals, and more",
       image: music,
-      link: "/categories/music_concert",
+      link: "/categories/music",
     },
     {
       id: 2,

@@ -1,10 +1,11 @@
 import React, { useContext, useEffect } from "react";
-import { Card, Image } from "semantic-ui-react";
+import { Card } from "semantic-ui-react";
 import img1 from "../../assets/tickets.jpeg";
 import UserContext from "../../UserContext";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import EventImage from "../../common/Image/Image";
 
 function EventCards({ type }) {
   const { userId } = useContext(UserContext);
@@ -33,8 +34,6 @@ function EventCards({ type }) {
         });
     }
   }, [userId, type]);
-  console.log("events", typeof events);
-  console.log("events", events);
   if (events) {
     return (
       <div className="mb-2">
@@ -49,7 +48,8 @@ function EventCards({ type }) {
             }}
           >
             <Card.Content>
-              <Image floated="left" size="medium" src={img1} alt="No" />
+              {/* <Image floated="left" size="medium" src={img1} alt="No" > */}
+              <EventImage path={event.image_path} />
               <Card.Header>{event.title}</Card.Header>
               <Card.Meta>location: {event.location}</Card.Meta>
               <Card.Content> Date: {event.event_date}</Card.Content>

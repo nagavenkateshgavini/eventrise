@@ -1,11 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import UserContext from "../../UserContext";
-import {
-  Navbar,
-  Container,
-  Nav,
-  Image,
-} from "react-bootstrap";
+import { Navbar, Container, Nav, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import img1 from "../../assets/tickets.jpeg";
 import "./header.css";
@@ -115,7 +110,7 @@ const Header = () => {
                   marginRight: "5px"
                 }}
               >
-                {username}
+                {isAuthenticated ? { username } : (<span>Login</span>)}
               </span>
               <Image
                 src={img1}

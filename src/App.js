@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import Home from "./common/Home/Home";
 import CreateEvent from "./components/Events/eventForm";
 import UserRegistration from "./components/UserRegistration/userRegistration";
 import Login from "./components/Login/login";
