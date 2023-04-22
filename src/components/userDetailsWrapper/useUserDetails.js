@@ -18,6 +18,7 @@ const useUserDetails = () => {
               },
             }
           );
+          console.log(response.data, "wrapper");
 
           setUser({
             isAuthenticated: true,
@@ -32,7 +33,6 @@ const useUserDetails = () => {
 
       fetchUserDetails();
     }
-  }, [setUser]);
-
+  }, []);
 };
 export default useUserDetails;

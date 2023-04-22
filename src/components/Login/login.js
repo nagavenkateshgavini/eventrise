@@ -101,13 +101,6 @@ function Login() {
               >
                 <Icon name="google" /> Sign up with Google
               </Button>
-              <Button
-                className="m-2"
-                color="facebook"
-                style={{ width: "100%" }}
-              >
-                <Icon name="facebook" /> Sign up in with Facebook
-              </Button>
             </Col>
             <Col xs={12} sm={12} md={2}>
               <Divider vertical className="vertical-divider">
@@ -160,7 +153,6 @@ function Login() {
                 </Grid>
 
                 <div className="mt-3">
-                  <Button circular color="facebook" icon="facebook" />
                   <Button circular color="google plus" icon="google plus" />
                 </div>
               </Form>

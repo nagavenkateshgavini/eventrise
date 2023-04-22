@@ -110,7 +110,7 @@ const Header = () => {
                   marginRight: "5px"
                 }}
               >
-                {isAuthenticated ? { username } : (<span>Login</span>)}
+                {isAuthenticated ? (<span>{username}</span>) : (<span>Login</span>)}
               </span>
               <Image
                 src={img1}
