@@ -11,7 +11,7 @@ import Footer from "../../common/Footer/footer";
 import UserContext from "../../UserContext";
 
 const UserProfile = () => {
-  const { email } = useContext(UserContext);
+  const { email, setUser } = useContext(UserContext);
   const [userData, setUserData] = useState({});
   const [viewState, setViewState] = useState({
     showUserDetails: true,
@@ -36,16 +36,15 @@ const UserProfile = () => {
 
   useEffect(() => {
     const userMail = { email: email };
-
+    console.log("userMail", userMail);
     let isMounted = true;
-    if (userMail) {
+    if (userMail.email) {
       axios
-        .get(`${process.env.REACT_APP_BASE_URL}userProfile`, {
-          params: userMail,
-        })
+        .post(`${process.env.REACT_APP_BASE_URL}userProfile`, userMail)
         .then((response) => {
           if (isMounted) {
             setUserData(response.data);
+            setUser({ username: response.data.name });
           }
         })
         .catch((error) => {
@@ -98,7 +97,7 @@ const UserProfile = () => {
             </ListGroup.Item>
             <ListGroup.Item
               className="cursor-pointer"
-              onClick={() => setView("Pending")}
+              onClick={() => setView("pendingEvents")}
             >
               Pending events
             </ListGroup.Item>

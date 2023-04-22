@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Form, Segment, Button, Grid } from "semantic-ui-react";
 import { Dropdown, Label } from "semantic-ui-react";
 import PhoneInput from "react-phone-input-2";
@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { validations } from "../../utils/validation";
 import axios from "axios";
 import { usStates } from "../../utils/states";
+import UserContext from "../../UserContext";
 
 function ProfileForm({ userData }) {
   const navigate = useNavigate();
@@ -43,10 +44,10 @@ function ProfileForm({ userData }) {
         .put(`${process.env.REACT_APP_BASE_URL}update`, formData)
         .then((res) => {
           console.log("res", res);
-          if (res.status === 201) {
+          if (res.status === 200) {
             console.log("I'm entering", res);
-            navigate("/");
           }
+          window.location.reload();
         })
         .catch((error) => {
           console.error(error);
