@@ -48,6 +48,28 @@ function FAQSection() {
                 costs associated with each payment type.
               </Accordion.Body>
             </Accordion.Item>
+            <Accordion.Item eventKey="4">
+              <Accordion.Header>
+                How to earn rewards?
+              </Accordion.Header>
+              <Accordion.Body>
+                Offering more than one option could help you attract a wider
+                variety of customers and allow your customers to make larger
+                purchases. However, there are advantages, disadvantages and
+                costs associated with each payment type.
+              </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="5">
+              <Accordion.Header>
+                How to refer my friends?
+              </Accordion.Header>
+              <Accordion.Body>
+                Offering more than one option could help you attract a wider
+                variety of customers and allow your customers to make larger
+                purchases. However, there are advantages, disadvantages and
+                costs associated with each payment type.
+              </Accordion.Body>
+            </Accordion.Item>
           </Accordion>
         </div>
       </div>

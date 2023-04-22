@@ -18,6 +18,16 @@ const Header = () => {
     setScrollPosition(window.pageYOffset);
   };
 
+  const siteName = document.querySelector('.siteName');
+
+  window.onscroll = function() {
+      if (window.pageYOffset > 50) {
+        siteName.style.color = "white";
+      } else {
+        siteName.style.color = "#e4a11b";
+      }
+    }
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -31,28 +41,28 @@ const Header = () => {
     <Navbar
       collapseOnSelect
       expand="lg"
-      variant="dark"
-      className={`py-2 ${scrollPosition > 50 ? "bg-light" : "bg-dark"}`}
+      className={`py-2 ${scrollPosition > 50 ? "bg-color" : "bg-dark"}`}
       fixed="top"
     >
       <Container>
         <Navbar.Brand
           href="/"
-          style={{ color: `${scrollPosition > 50 ? "black" : "white"}` }}
+          style={{ color: `${scrollPosition > 50 ? "black" : "white"}`, fontSize: 'large' }}
         >
-          Event<span className="siteName">Rise</span>
+          Event<span className="siteName"> Rise</span>
         </Navbar.Brand>
+        
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
           className={`${scrollPosition > 50 ? "bg-dark" : ""}`}
         />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="justify-content-end flex-grow-1 pe-3">
-            <Link className="link" to="/browse">
-              Browse
+            <Link className="link" to="/">
+              Browse Events
             </Link>
             <Link className="link" to="/create">
-              create Event
+              Create Events
             </Link>
             {/* <NavDropdown
               title={<span className="menu-title">Features</span>}
@@ -86,7 +96,7 @@ const Header = () => {
                   userId: "",
                   isAuthenticated: false,
                 });
-                navigate("/browse");
+                navigate("/");
               }}
             >
               Logout
@@ -94,11 +104,7 @@ const Header = () => {
           )}
           <Nav className="ms-2">
             <Link to="/userProfile">
-              <Image
-                src={img1}
-                style={{ borderRadius: "90%", height: "50px", width: "50px" }}
-              />
-              <span
+            <span
                 style={{
                   fontSize: "16px",
                   fontWeight: "500",
@@ -106,10 +112,15 @@ const Header = () => {
                   lineHeight: "50px",
                   verticalAlign: "middle",
                   marginLeft: "5px",
+                  marginRight: "5px"
                 }}
               >
                 {username}
               </span>
+              <Image
+                src={img1}
+                style={{ borderRadius: "90%", height: "50px", width: "50px" }}
+              />
             </Link>
           </Nav>
         </Navbar.Collapse>

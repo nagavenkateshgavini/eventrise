@@ -1,14 +1,25 @@
 .siteName {
   color: #e4a11b;
+  font-weight: bold;
+  font-size: x-large;
 }
+
+.bg-color {
+  background-color: rgb(122, 201, 223);
+}
+
 .link {
-  color: #e4a11b;
+  color: #131211;
   text-decoration: none;
   font-weight: 600;
-  font-size: 14px;
-  padding: 10px 10px;
-  border-radius: 4px;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5px 5px;
+  border-radius: 10px;
+  margin-right: 10px;
+  font-family: cursive;
   transition: background-color 0.3s;
+  background-color: #e4a11b;
 }
 
 .link:hover {
@@ -26,6 +37,7 @@
   color: #1b83e4;
   border-radius: 15px 0px 20px 0px;
 }
+
 .menu-title {
   color: #e4a11b;
   font-size: 14px;

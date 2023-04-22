@@ -18,11 +18,11 @@ body {
     rgba(255, 165, 0, 1) 10%,
     rgb(74, 72, 72) 100%
   ) !important; */
-  background: #1c92d2 !important; /* fallback for old browsers */
+  background: #89d7f1 !important; /* fallback for old browsers */
   background: linear-gradient(
-    to right,
+    to bottom
     #f2fcfe,
-    #1c92d2
+    #4aace1
   ) !important; /* Chrome 10-25, Safari 5.1-6 */
 }
 
