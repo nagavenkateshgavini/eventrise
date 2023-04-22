@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Segment } from "semantic-ui-react";
 import { Card, Carousel, Container, Row, Col } from "react-bootstrap";
 import img1 from "../../assets/celebration.jpeg";
@@ -15,35 +15,52 @@ function Categories() {
     axios
       .get(`${process.env.REACT_APP_BASE_URL}api/eventCategory/${category}`)
       .then((res) => {
+        console.log(res.data);
         setEvents(res.data);
       });
   }, [category]);
 
   // Define the EventCard component
   const EventCard = ({ event }) => {
+    const navigate = useNavigate();
     const [isExpanded, setIsExpanded] = useState(false);
+    const [imageSrc, setImageSrc] = useState("../../assets/bg-5.jpg");
 
     const toggleDescription = () => {
       setIsExpanded(!isExpanded);
     };
+    const image_path = event.image_path;
+
+    useEffect(() => {
+      axios
+        .post(`${process.env.REACT_APP_BASE_URL}getEventImage`, image_path)
+        .then((res) => setImageSrc(res.data));
+    }, []);
 
     const truncateDescription = (desc) => {
       const maxLength = 100; // Maximum characters to display before truncation
       return desc.length > maxLength ? desc.slice(0, maxLength) + "..." : desc;
     };
+
+    const handleNavigation = () => {
+      navigate(`/event/${event.event_id}`, {
+        state: { imageSrc },
+      });
+    };
     return (
       <Col xs={12} sm={6} md={4} lg={3}>
-        <Link
-          to={`/event/${event.event_id}`}
+        <div
+          onClick={handleNavigation}
           style={{
             textDecoration: "none",
             color: "black",
+            cursor: "pointer",
           }}
         >
           <Card className="mb-4">
             <Card.Img
               variant="top"
-              src={event.image}
+              src={imageSrc}
               style={{ height: "200px", width: "100%", objectFit: "cover" }}
             />
             <Card.Body>
@@ -70,7 +87,7 @@ function Categories() {
               </Card.Text>
             </Card.Body>
           </Card>
-        </Link>
+        </div>
       </Col>
     );
   };
@@ -113,7 +130,7 @@ function Categories() {
   return (
     <div>
       <Segment className="m-4">
-        <h1>Category: {category === "music_concert" ? "music" : category}</h1>
+        <h1>Category: {category}</h1>
         <EventDisplay events={events} />
       </Segment>
       <Footer />

@@ -23,7 +23,7 @@ const EventDetails = () => {
   const receivedLocation = useLocation();
 
   useEffect(() => {
-    console.log(receivedLocation);
+    console.log(receivedLocation.state.imageSrc);
     axios
       .get(`${process.env.REACT_APP_BASE_URL}api/events/${eventId}`)
       .then((res) => setEvent(res.data));
@@ -50,7 +50,7 @@ const EventDetails = () => {
           <Grid.Row>
             <Grid.Column mobile={16} tablet={8} computer={6} largeScreen={6}>
               <Segment>
-                <Image src={img1} centered />
+                <Image src={receivedLocation.state ?receivedLocation.state.imageSrc:img1} centered />
                 <Header as="h2" textAlign="center">
                   {title}
                 </Header>

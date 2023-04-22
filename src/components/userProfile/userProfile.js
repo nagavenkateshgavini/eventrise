@@ -38,20 +38,22 @@ const UserProfile = () => {
     const userMail = { email: email };
 
     let isMounted = true;
-
-    axios
-      .get(`${process.env.REACT_APP_BASE_URL}userProfile`, {
-        params: userMail,
-      })
-      .then((response) => {
-        if (isMounted) {
-          console.log("data", response.data);
-          setUserData(response.data);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    if (userMail) {
+      axios
+        .get(`${process.env.REACT_APP_BASE_URL}userProfile`, {
+          params: userMail,
+        })
+        .then((response) => {
+          if (isMounted) {
+            setUserData(response.data);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      //Loader
+    }
 
     return () => {
       isMounted = false;
@@ -118,8 +120,7 @@ const UserProfile = () => {
             <Segment>
               <div className="display-5"> Account Information</div>
               <hr />
-              <ProfileCard />
-              <h6>Profile Pic</h6>
+              {/* <ProfileCard /> */}
               <ProfileForm userData={userData} />
             </Segment>
           )}
