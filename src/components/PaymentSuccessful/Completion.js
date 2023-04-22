@@ -15,8 +15,7 @@ function Completion() {
       <div className="background-image background-image-bright"></div>
       <Card className="registration-card">
         <h4 className="text-center mb-4" style={{ color: "white" }}>
-          Congratulations, your payment is successful! <br /> You will receive
-          the ticket to your registered email address shortly!
+          Congratulations, your payment is successful!
         </h4>
         <div className="mainComponent">
           <div className="d-flex justify-content-center">
