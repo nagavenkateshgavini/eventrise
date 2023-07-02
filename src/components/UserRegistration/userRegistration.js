@@ -26,6 +26,7 @@ const genderOptions = [
 
 const UserRegistration = () => {
   const navigate = useNavigate();
+	const [userExist,setuserExist] =useState(false);
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     name: "",
@@ -48,6 +49,7 @@ const UserRegistration = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setErrors({});
+	  setuserExist(false);
     setFormData({ ...formData, [name]: value });
   };
   const isNotEmpty = (value) => {
@@ -96,12 +98,18 @@ const UserRegistration = () => {
       axios
         .post(`${process.env.REACT_APP_BASE_URL}createUser`, formData)
         .then((res) => {
+	  console.log(res);
           if (res.status === 201) {
             console.log("I'm entering", res);
             navigate("/login");
           }
+
         })
         .catch((error) => {
+
+                  console.log("Im Entering catch  block");
+                  setuserExist(true);
+
           console.error(error);
         });
     }
@@ -128,6 +136,11 @@ const UserRegistration = () => {
           <SemanticHeader as="h2" textAlign="center" color="black">
             User Registration
           </SemanticHeader>
+	  {userExist && (
+                <Label basic pointing prompt color="red">
+                {"User Already Exists "}
+                </Label>
+        )}
           <Grid className="p-4">
             <Grid.Row centered columns={2}>
               <Grid.Column mobile={16} computer={8}>

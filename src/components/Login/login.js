@@ -53,10 +53,13 @@ function Login() {
             email: res.data.email,
             userId: res.data.userId,
           });
-          if (userName === "admin@northeastern.edu") {
+          if (userName == "admin@northeastern.edu") {
+		  console.log(userName);
             navigate("/admin");
-          }
-          navigate("/");
+          }else{
+             navigate("/");
+	  }
+
         }
       })
       .catch((error) => {

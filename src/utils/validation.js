@@ -3,7 +3,8 @@ export const validations = (formData) => {
   const newErrors = {};
   for (const fieldName in formData) {
     if (!isNotEmpty(formData[fieldName])) {
-      newErrors[fieldName] = "This field is required";
+      if(fieldName === "country"){continue;}
+	    newErrors[fieldName] = "This field is required";
     }
   }
   const re =

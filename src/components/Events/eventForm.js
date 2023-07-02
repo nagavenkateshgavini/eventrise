@@ -20,7 +20,7 @@ export default function EventForm() {
     const [errors, setErrors] = useState({})
     const { username, email, userId } = useContext(UserContext);
     const [selectedFile, setSelectedFile] = useState(null);
-
+    console.log(userId);
     const setField = (field, value) => {
         setForm({
             ...form,
@@ -53,6 +53,7 @@ export default function EventForm() {
     const send = (form) => {
         const url = `${process.env.REACT_APP_BASE_URL}createEvent`;
         form['hosted_by'] = userId;
+	console.log("On click: " + userId);
         form['event_id'] = uuidv4();
         console.log(url, form);
         const formData = new FormData();

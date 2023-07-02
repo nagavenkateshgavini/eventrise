@@ -13,16 +13,6 @@ const Header = () => {
     setScrollPosition(window.pageYOffset);
   };
 
-  const siteName = document.querySelector('.siteName');
-
-  window.onscroll = function() {
-      if (window.pageYOffset > 50) {
-        siteName.style.color = "white";
-      } else {
-        siteName.style.color = "#e4a11b";
-      }
-    }
-
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -44,7 +34,7 @@ const Header = () => {
           href="/"
           style={{ color: `${scrollPosition > 50 ? "black" : "white"}`, fontSize: 'large' }}
         >
-          Event<span className="siteName"> Rise</span>
+	  Event<span style={{ color: `${scrollPosition > 50 ? "white": "#e4a11b"}`, fontSize: 'large' }} className="siteName"> Rise</span>
         </Navbar.Brand>
         
         <Navbar.Toggle
@@ -98,7 +88,7 @@ const Header = () => {
             </Link>
           )}
           <Nav className="ms-2">
-            <Link to="/userProfile">
+            <Nav.Link href="/userProfile">
             <span
                 style={{
                   fontSize: "16px",
@@ -116,7 +106,7 @@ const Header = () => {
                 src={img1}
                 style={{ borderRadius: "90%", height: "50px", width: "50px" }}
               />
-            </Link>
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

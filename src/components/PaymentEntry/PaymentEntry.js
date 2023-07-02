@@ -6,6 +6,7 @@ import { ethers } from "ethers";
 import CardAmount from "../../common/CardPayment/CardAmount";
 import UserContext from "../../UserContext";
 import "./styles.css";
+import Axios from 'axios';
 
 const erc20Abi = require("../../abi/abi.json");
 const CONTRACT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
@@ -63,6 +64,17 @@ const PaymentEntry = () => {
   };
 
   const handleModalClose = () => setShowModal(false);
+  const sendEmail = async (ticketID) => {
+    try {
+	console.log("sending email:",ticketID);
+      const response = await Axios.post(`${process.env.REACT_APP_BASE_URL}api/sendEmail`, {
+        ticketID: ticketID,
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error while sending email:', error);
+    }
+  };
 
   const saveTicket = async (type) => {
     const ticketData = {
@@ -73,7 +85,7 @@ const PaymentEntry = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/api/tickets", {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}api/tickets`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -83,6 +95,8 @@ const PaymentEntry = () => {
 
       if (response.ok) {
         console.log("Ticket added successfully");
+	const ticketData = await response.json();
+	      sendEmail(ticketData['_id']);
       } else {
         console.log("Error adding ticket");
       }

@@ -59,7 +59,7 @@ const BrowseEvents = () => {
       title: "Food",
       description: "Experience delicious cuisine",
       image: food,
-      link: "/categories/Food",
+      link: "/categories/food",
     },
     // Add more categories as needed
   ];

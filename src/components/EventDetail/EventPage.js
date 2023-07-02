@@ -23,7 +23,7 @@ const EventDetails = () => {
   const receivedLocation = useLocation();
 
   useEffect(() => {
-    console.log(receivedLocation.state.imageSrc);
+    //console.log(receivedLocation.state.imageSrc);
     axios
       .get(`${process.env.REACT_APP_BASE_URL}api/events/${eventId}`)
       .then((res) => setEvent(res.data));
@@ -108,7 +108,7 @@ const EventDetails = () => {
 
                   {description}
                 </Segment>
-                {!receivedLocation.state && (
+                {receivedLocation.state && !receivedLocation.state.received && (
                   <div style={{ textAlign: "center" }}>
                     {" "}
                     <Button color="green" onClick={handleClick}>

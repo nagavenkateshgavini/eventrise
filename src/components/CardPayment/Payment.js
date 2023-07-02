@@ -7,13 +7,13 @@ import CardAmount from "../../common/CardPayment/CardAmount";
 import "./PaymentForm.css";
 
 function Payment() {
-  const URL = "http://localhost:3000";
+  //const URL = "http://localhost:3000";
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
   let { amount } = useParams();
 
   useEffect(() => {
-    fetch(URL + "/config").then(async (r) => {
+    fetch(`${process.env.REACT_APP_BASE_URL}config`).then(async (r) => {
       const { publishableKey } = await r.json();
       setStripePromise(loadStripe(publishableKey));
     });
@@ -21,7 +21,7 @@ function Payment() {
 
   useEffect(() => {
     const params = { amount };
-    fetch(URL + "/create-payment-intent", {
+    fetch(`${process.env.REACT_APP_BASE_URL}create-payment-intent`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

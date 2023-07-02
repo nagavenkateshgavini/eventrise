@@ -24,12 +24,12 @@ function Categories() {
   const EventCard = ({ event }) => {
     const navigate = useNavigate();
     const [isExpanded, setIsExpanded] = useState(false);
-    const [imageSrc, setImageSrc] = useState("../../assets/bg-5.jpg");
+    const [imageSrc, setImageSrc] = useState("");
 
     const toggleDescription = () => {
       setIsExpanded(!isExpanded);
     };
-    const image_path = event.image_path;
+    const image_path = {image_path: event.image_path};
 
     useEffect(() => {
       axios
