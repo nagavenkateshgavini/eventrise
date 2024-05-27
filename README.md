@@ -1,4 +1,4 @@
-# eventrise
+# EventRise
 This is a platform for all communities to create and attend events.
 
 Team Details:
@@ -7,6 +7,9 @@ Team Details:
 3. Nagendra
 4. Dinesh
 5. Dheeraj
+
+# Backend made with Node & EpressJS
+- https://github.com/NagendraBabuShakamuri/event-rise-apis
 
 # Getting Started with Create React App
 
